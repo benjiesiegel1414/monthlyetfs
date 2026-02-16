@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Paste your full <head> content from index.html here (gtag, meta, adsbygoogle, favicons, etc.) -->
+    <title>FAQ | MonthlyETFs.com</title>
+    <meta name="description" content="Frequently Asked Questions – MonthlyETFs.com">
+    
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="content">
+
+    <header onclick="location.href='/'">
+        <div class="header-container">
+            <img src="https://raw.githubusercontent.com/benjiesiegel1414/monthlyetfs/main/monthly2-croppedd.png" 
+                 alt="MonthlyETFs.com Logo" 
+                 class="banner-img">
+        </div>
+    </header>
+
+    <div class="main-h1">
+        <h1>Frequently Asked Questions</h1>
+        <p class="subtitle">Common questions about monthly dividend ETFs and this site</p>
+    </div>
+
+    <div class="legal-card">
+        <div class="legal-inner faq-inner">
+            <div class="faq-item">
+                <button class="faq-toggle">What is a monthly dividend ETF?</button>
+                <div class="faq-content">
+                    <p>An ETF that distributes dividends to shareholders every month rather than quarterly or annually. These are popular among investors seeking more frequent passive income streams.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-toggle">How often is the data on this site updated?</button>
+                <div class="faq-content">
+                    <p>The ETF list and metrics (yields, AUM, price decay, etc.) are refreshed daily from public sources. However, market data can change rapidly — always verify with your broker or the ETF issuer's official site.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-toggle">What does "Price Decay" mean?</button>
+                <div class="faq-content">
+                    <p>It indicates whether the ETF's share price has generally declined since inception. This refers to price movement only — not total return (which includes reinvested dividends).</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-toggle">Why do some ETFs have very high yields?</button>
+                <div class="faq-content">
+                    <p>Very high yields can result from covered call strategies, return of capital distributions, leverage, or concentration in higher-risk sectors. High yield usually correlates with higher risk — always review the ETF's prospectus and distribution composition.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-toggle">How can I suggest an ETF or report incorrect data?</button>
+                <div class="faq-content">
+                    <p>Email us at <a href="mailto:Business@TopDividendETFs.com">Business@TopDividendETFs.com</a>. We review suggestions, corrections, and feedback regularly.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-toggle">Is MonthlyETFs.com affiliated with any ETF issuers or providers?</button>
+                <div class="faq-content">
+                    <p>No. MonthlyETFs.com is an independent educational resource. Any future affiliate links or sponsored content will be clearly disclosed.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-toggle">Is the information on this site financial advice?</button>
+                <div class="faq-content">
+                    <p>No. All content is for informational and entertainment purposes only. It is not investment advice, financial advice, or a recommendation to buy, sell, or hold any securities. Always consult a licensed financial advisor.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="back-to-top" onclick="location.href='/'">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </svg>
+        Back to Home
+    </button>
+
+    <footer class="site-footer">
+        <p>© 2026 MonthlyETFs.com. All rights reserved.</p>
+    </footer>
+
+</div>
+
+<style>
+    /* Identical style block as your deployed terms.html – paste the full style from your live terms.html here */
+    :root {
+        --primary: #30776C;
+        --primary-light: #4a9d8f;
+        --primary-dark: #1f5148;
+        --text-dark: #1e2f2b;
+        --text-medium: #2d3f3a;
+        --text-light: #5a7a74;
+        --bg-light: #f9fcfb;
+        --bg-lighter: #ffffff;
+        --border-color: rgba(48, 119, 108, 0.12);
+        --shadow-sm: 0 2px 8px rgba(48, 119, 108, 0.08);
+        --shadow-md: 0 4px 16px rgba(48, 119, 108, 0.12);
+        --shadow-lg: 0 10px 40px rgba(48, 119, 108, 0.15);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        background: linear-gradient(135deg, #EEF1F1 0%, #E8F0EE 50%, #DDE9E7 100%);
+        min-height: 100vh;
+        color: var(--text-medium);
+        line-height: 1.6;
+    }
+
+    .content {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    header {
+        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+        padding: 16px 24px;
+        text-align: center;
+        width: 100%;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        cursor: pointer;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        transition: all 0.3s ease;
+    }
+
+    header:hover { box-shadow: 0 6px 30px rgba(0,0,0,0.2); }
+
+    .header-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .banner-img {
+        max-width: 260px;
+        width: 85%;
+        height: auto;
+        display: block;
+        transition: transform 0.3s ease;
+        filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+    }
+
+    header:hover .banner-img { transform: scale(1.02); }
+
+    .main-h1 {
+        text-align: center;
+        padding: 60px 20px 40px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .main-h1 h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-bottom: 12px;
+        letter-spacing: -0.02em;
+        position: relative;
+        display: inline-block;
+    }
+
+    .main-h1 h1::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary-light), var(--primary));
+        border-radius: 2px;
+    }
+
+    .subtitle {
+        color: var(--text-light);
+        font-size: 1.1rem;
+        margin-top: 20px;
+        font-weight: 400;
+        letter-spacing: 0.01em;
+    }
+
+    .legal-card {
+        background: var(--bg-lighter);
+        border-radius: 20px;
+        box-shadow: var(--shadow-lg);
+        margin: 0 auto 80px;
+        max-width: 980px;
+        width: 95%;
+        border: 1px solid var(--border-color);
+        overflow: hidden;
+    }
+
+    .legal-inner {
+        padding: 56px 48px;
+        font-size: 1.05rem;
+        line-height: 1.8;
+        color: var(--text-medium);
+    }
+
+    .faq-inner .section {
+        margin-bottom: 0;
+    }
+
+    .faq-item {
+        margin-bottom: 24px;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 24px;
+    }
+
+    .faq-item:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+        margin-bottom: 0;
+    }
+
+    .faq-toggle {
+        width: 100%;
+        background: none;
+        border: none;
+        text-align: left;
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--primary);
+        cursor: pointer;
+        padding: 0 0 12px;
+        transition: color 0.2s;
+    }
+
+    .faq-toggle:hover {
+        color: var(--primary-dark);
+    }
+
+    .faq-content {
+        display: none;
+        padding: 16px 0 0;
+        color: var(--text-medium);
+        line-height: 1.7;
+    }
+
+    .faq-content.show {
+        display: block;
+    }
+
+    .intro {
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: var(--text-dark);
+        margin-bottom: 48px;
+        padding: 24px;
+        background: linear-gradient(135deg, rgba(48,119,108,0.05), rgba(48,119,108,0.02));
+        border-left: 4px solid var(--primary);
+        border-radius: 8px;
+    }
+
+    .section h2 {
+        color: var(--primary);
+        font-size: 1.65rem;
+        margin: 0 0 20px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        padding-bottom: 12px;
+        border-bottom: 2px solid rgba(48,119,108,0.15);
+    }
+
+    .contact-section {
+        margin-top: 60px;
+        padding-top: 48px;
+        border-top: 2px solid var(--border-color);
+    }
+
+    .contact-card {
+        background: linear-gradient(135deg, rgba(48,119,108,0.05), rgba(48,119,108,0.02));
+        padding: 40px;
+        border-radius: 16px;
+        text-align: center;
+        border: 2px solid var(--border-color);
+    }
+
+    .icon-contact {
+        width: 48px;
+        height: 48px;
+        color: var(--primary);
+        margin: 0 auto 20px;
+        display: block;
+    }
+
+    .contact-card h2 {
+        border: none;
+        margin-bottom: 16px;
+        justify-content: center;
+    }
+
+    .contact-card p {
+        margin-bottom: 20px;
+        color: var(--text-light);
+    }
+
+    .contact-link {
+        color: var(--primary);
+        font-weight: 600;
+        text-decoration: none;
+        font-size: 1.2rem;
+        display: inline-block;
+        padding: 12px 32px;
+        background: var(--bg-lighter);
+        border-radius: 8px;
+        border: 2px solid var(--primary);
+        transition: all 0.3s ease;
+    }
+
+    .contact-link:hover {
+        background: var(--primary);
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+    }
+
+    .back-to-top {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: linear-gradient(135deg, var(--primary), var(--primary-light));
+        color: white;
+        border: none;
+        padding: 16px 36px;
+        font-size: 1.05rem;
+        font-weight: 600;
+        border-radius: 12px;
+        cursor: pointer;
+        margin: 0 auto 60px;
+        box-shadow: var(--shadow-md);
+        transition: all 0.3s ease;
+    }
+
+    .back-to-top svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .back-to-top:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 24px rgba(48,119,108,0.3);
+        background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    }
+
+    .site-footer {
+        text-align: center;
+        padding: 32px 20px;
+        background: rgba(48,119,108,0.05);
+        color: var(--text-light);
+        font-size: 0.95rem;
+        margin-top: auto;
+    }
+
+    @media (max-width: 768px) {
+        .main-h1 h1 { font-size: 2.2rem; }
+        .legal-inner { padding: 40px 28px; }
+        .contact-card { padding: 32px 24px; }
+        .back-to-top { padding: 14px 28px; font-size: 1rem; }
+    }
+
+    @media (max-width: 640px) {
+        .banner-img { max-width: 220px; width: 75%; }
+        header { padding: 12px 16px; }
+        .main-h1 { padding: 40px 20px 30px; }
+        .main-h1 h1 { font-size: 1.8rem; }
+        .subtitle { font-size: 1rem; }
+        .legal-inner { padding: 32px 20px; }
+        .intro { font-size: 1.08rem; padding: 20px; }
+        .section h2 { font-size: 1.25rem; }
+        .contact-link { font-size: 1.05rem; padding: 10px 24px; }
+    }
+
+    html { scroll-behavior: smooth; }
+</style>
+
+<script>
+    document.querySelectorAll('.faq-toggle').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const content = btn.nextElementSibling;
+            content.classList.toggle('show');
+        });
+    });
+</script>
+
+</body>
+</html>
