@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="index, follow">
 
-  <title>Top 100+ Monthly Dividend ETFs – MonthlyETFs.com</title>
+  <title>Top Monthly Dividend ETFs – MonthlyETFs.com</title>
   <meta name="description" content="Analyze the Top monthly dividend ETFs & High Yield ETFs for passive income. See all the best monthly dividend ETFs in one place. Discover dividend yields, ETF funds, to help you on your journey">
 
   <!-- FAVICONS -->
@@ -52,9 +52,6 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
 
-    <!-- (Your styles stay exactly the same below this) -->
-
-
     <style>
         html {
             font-size: 17.6px;                        /* ≈110% feel at 100% zoom */
@@ -91,7 +88,7 @@
         .main-h1 span{display:block;font-size:0.85em;color:#c62828;font-weight:900;margin-top:7px;opacity:0.9}
         .content{width:95%;max-width:1150px;margin:0 auto;display:flex;flex-direction:column;align-items:center}
         #filters{max-width:1150px;margin:11px auto 22px;display:flex;flex-wrap:wrap;gap:13px;justify-content:center;align-items:center}
-        .top-disclaimer{max-width:870px;margin:22px auto 16px;padding:0 16px;text-align:center;font-size:0.71em;line-height:1.6;color:#222} /* 25% smaller from 0.95em */
+        .top-disclaimer{max-width:870px;margin:22px auto 16px;padding:0 16px;text-align:center;font-size:0.71em;line-height:1.6;color:#222}
         .top-disclaimer strong{color:#c62828;font-weight:900}
         .top-disclaimer .highlight{background:#fff8e1;padding:2px 6px;border-radius:4px;font-weight:900;color:#d32f2f}
         #etfTable{width:100%;max-width:100%;margin:0 auto;border-collapse:collapse;background:#fff;border:3px solid var(--primary);border-radius:9px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.22)}
@@ -122,108 +119,52 @@
         .footer .tagline a{color:var(--primary);text-decoration:none}
         .loading{text-align:center;padding:40px;font-size:1.3em;color:#555}
 
-        /* Custom clickable banner – ONLY THIS SECTION CHANGED */
+        /* Updated custom banner – simplified, no animations, no background gradient */
         .custom-banner {
             width: 100%;
             max-width: 776px;
             height: auto;
-            min-height: 70px;
-            margin: 25px auto 15px;
-            background: linear-gradient(135deg, #1a4d44 0%, var(--primary) 50%, var(--accent) 100%);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #ffffff !important;
-            font-weight: 900;
-            font-size: 1.8em;
-            text-align: center;
-            padding: 15px 20px;
-            cursor: pointer;
+            margin: 25px auto 8px;
+            display: block;
             text-decoration: none;
-            box-shadow: 0 6px 20px rgba(0,0,0,.35);
-            transition: all 0.3s ease;
-            position: relative;
+            border-radius: 12px;
             overflow: hidden;
-            border: 3px solid rgba(255,255,255,0.2);
-            letter-spacing: 1px;
-            line-height: 1.2;
-            flex-wrap: wrap;
-            box-sizing: border-box;
+            box-shadow: 0 4px 12px rgba(0,0,0,.18);
+            transition: all 0.25s ease;
+            background: transparent;
+            border: none;
         }
         .custom-banner:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 12px 30px rgba(0,0,0,.45);
-            border-color: rgba(255,255,255,0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 24px rgba(0,0,0,.28);
         }
-        .custom-banner::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.15), transparent);
-            transform: rotate(45deg);
-            animation: shine 2.5s infinite;
-        }
-        @keyframes shine {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-        }
-        .custom-banner span {
-            position: relative;
-            z-index: 1;
-            color: #ffffff !important;
-            text-shadow: 
-                2px 2px 4px rgba(0,0,0,0.5),
-                0 0 10px rgba(255,255,255,0.3),
-                0 0 20px rgba(255,255,255,0.2);
-            animation: textPulse 2s ease-in-out infinite;
-            text-align: center;
+        .custom-banner img {
             width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            height: auto;
+            display: block;
+            border-radius: 12px;
         }
-        .custom-banner::after {
-            content: '👉 CLICK HERE 👈';
-            position: absolute;
-            bottom: 6px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.35em;
-            font-weight: 700;
-            color: #FFD700;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
-            letter-spacing: 2px;
-            animation: blink 1.5s ease-in-out infinite;
-        }
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.6; }
+        .sponsored-label {
+            text-align: center;
+            font-size: 0.78em;
+            color: #666;
+            margin: 4px auto 16px;
+            max-width: 776px;
+            font-style: italic;
         }
         .footer .custom-banner {
-            margin: 20px auto 30px;
-            max-width: 776px;
+            margin: 20px auto 8px;
+        }
+        .footer .sponsored-label {
+            margin: 4px auto 20px;
         }
         @media(max-width:767px){
             .custom-banner {
-                font-size: 1.3em;
-                padding: 12px 15px;
-                min-height: 60px;
-                margin-left: auto;
-                margin-right: auto;
-                text-align: center;
+                margin: 20px auto 6px;
             }
-            .custom-banner span {
-                font-size: 1.1em;
-                width: 100%;
-                justify-content: center;
-            }
-            .custom-banner::after {
-                font-size: 0.28em;
-                bottom: 3px;
+            .sponsored-label {
+                font-size: 0.74em;
+                margin-bottom: 14px;
             }
         }
     </style>
@@ -235,8 +176,8 @@
     </header>
 
     <div class="main-h1">
-        <h1>Top 100+ Monthly Dividend ETFs
-            <span>Best Monthly Payers Ranked by Yield – Updated Daily</span>
+        <h1>Top Monthly Dividend ETFs
+            <span>Best Monthly Payers Ranked by Yield – New ETFs Added Daily!</span>
         </h1>
     </div>
 
@@ -248,10 +189,11 @@
         <strong>*MonthlyETFs.com is for entertainment purposes ONLY!*</strong>
     </div>
 
-    <!-- Custom clickable banner -->
-    <a href="https://www.youtube.com/watch?v=ZnpR3P9oKls&t=122s" target="_blank" rel="noopener" class="custom-banner">
-        <span>🎯 5 Top Dividend ETFs 🎯</span>
+    <!-- Top banner - BTYB -->
+    <a href="https://www.vistashares.com/etf/btyb/" target="_blank" rel="noopener sponsored" class="custom-banner">
+        <img src="https://raw.githubusercontent.com/benjiesiegel1414/monthlyetfs/main/btyb.png" alt="VistaShares BTYB ETF">
     </a>
+    <div class="sponsored-label">Sponsored by VistaShares</div>
 
     <div id="filters">
         <button id="resetFilters">Reset Filters</button>
@@ -292,10 +234,11 @@
     <button class="back-to-top" onclick="location.reload()">Back To Top</button>
 
     <footer class="footer">
-        <!-- Custom clickable banner in footer -->
-        <a href="https://www.youtube.com/watch?v=ZnpR3P9oKls&t=122s" target="_blank" rel="noopener" class="custom-banner">
-            <span>🎯 5 Top Dividend ETFs 🎯</span>
+        <!-- Bottom banner - TPRY -->
+        <a href="https://www.vistashares.com/etf/tpry/" target="_blank" rel="noopener sponsored" class="custom-banner">
+            <img src="https://raw.githubusercontent.com/benjiesiegel1414/monthlyetfs/main/tpry.png" alt="VistaShares TPRY ETF">
         </a>
+        <div class="sponsored-label">Sponsored by VistaShares</div>
 
         <p>
             <a href="terms.html">Terms of Use</a> | 
