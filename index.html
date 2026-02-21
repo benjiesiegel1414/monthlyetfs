@@ -54,11 +54,11 @@
 
     <style>
         html {
-            font-size: 17.6px;                        /* ≈110% feel at 100% zoom */
+            font-size: 17.6px;
         }
         @media (min-width: 1024px) {
             html {
-                font-size: 18.2px;                    /* Slightly larger on desktop */
+                font-size: 18.2px;
             }
         }
         html, body{margin:0;padding:0;overflow-x:hidden !important;width:100%;position:relative}
@@ -103,9 +103,7 @@
         .decay{font-weight:bold;color:#000 !important}
         @media(min-width:769px){th,td{padding:15px 9px;font-size:1.1em}}
         @media(max-width:768px){th{display:none}tr{display:flex;flex-direction:column;background:#fff;border-radius:6px;margin:8px 0;padding:10px;box-shadow:0 2px 8px rgba(0,0,0,.1)}td{display:flex;justify-content:space-between;padding:4px 0;font-size:.9em}td:before{content:attr(data-label);font-weight:bold;color:var(--primary);min-width:110px}}
-        .sort-asc::after,.sort-desc::after{content:" ";position:absolute;right:8px;top:50%;transform:translateY(-50%);width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent}
-        .sort-asc::after{border-bottom:7px solid #fff}
-        .sort-desc::after{border-top:7px solid #fff}
+
         #resetFilters{padding:8px 16px;background:var(--primary);color:#fff;border-radius:6px;cursor:pointer;font-weight:bold;border:none;font-size:0.95em}
         #resetFilters:hover{background:#265e56}
         select,input{padding:8px 12px;border-radius:6px;border:1px solid #ccc;font-size:0.95em}
@@ -119,7 +117,7 @@
         .footer .tagline a{color:var(--primary);text-decoration:none}
         .loading{text-align:center;padding:40px;font-size:1.3em;color:#555}
 
-        /* Updated custom banner – simplified, no animations, no background gradient */
+        /* Custom banner styles */
         .custom-banner {
             width: 100%;
             max-width: 776px;
@@ -152,20 +150,11 @@
             max-width: 776px;
             font-style: italic;
         }
-        .footer .custom-banner {
-            margin: 20px auto 8px;
-        }
-        .footer .sponsored-label {
-            margin: 4px auto 20px;
-        }
+        .footer .custom-banner { margin: 20px auto 8px; }
+        .footer .sponsored-label { margin: 4px auto 20px; }
         @media(max-width:767px){
-            .custom-banner {
-                margin: 20px auto 6px;
-            }
-            .sponsored-label {
-                font-size: 0.74em;
-                margin-bottom: 14px;
-            }
+            .custom-banner { margin: 20px auto 6px; }
+            .sponsored-label { font-size: 0.74em; margin-bottom: 14px; }
         }
     </style>
 </head>
