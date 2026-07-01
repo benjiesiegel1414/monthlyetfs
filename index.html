@@ -156,6 +156,18 @@
             .custom-banner { margin: 20px auto 6px; }
             .sponsored-label { font-size: 0.74em; margin-bottom: 14px; }
         }
+
+        /* ────────────────────────────────────── SITE NETWORK BAR ────────────────────────────────────── */
+        .site-network-bar{width:100%;background:#fff;border-bottom:1px solid #ddd;padding:6px 0;}
+        .site-network-track{max-width:1150px;margin:0 auto;padding:0 15px;display:flex;align-items:center;justify-content:flex-start;gap:6px;overflow-x:auto;white-space:nowrap;-ms-overflow-style:none;scrollbar-width:none;}
+        .site-network-track::-webkit-scrollbar{display:none;}
+        .site-network-track::after{content:"";flex:0 0 4px;}
+        .site-network-label{font-size:0.51em;text-transform:uppercase;letter-spacing:0.5px;color:#999;font-weight:900;flex-shrink:0;margin-right:2px;}
+        .site-pill{display:inline-flex;align-items:center;gap:4px;padding:4px 9px;border-radius:999px;border:1px solid var(--primary);background:#fff;color:var(--primary);font-size:0.6em;font-weight:700;text-decoration:none;flex-shrink:0;transition:background .15s ease, color .15s ease;box-sizing:border-box;}
+        .site-pill:hover{background:var(--primary);color:#fff;}
+        .site-pill.current{background:var(--primary);color:#fff;cursor:default;}
+        @media(min-width:1150px){.site-network-track{justify-content:center;}}
+        /* ────────────────────────────────────── END SITE NETWORK BAR ────────────────────────────────────── */
     </style>
 </head>
 <body>
@@ -163,6 +175,19 @@
     <header onclick="location.reload()">
         <img src="https://raw.githubusercontent.com/benjiesiegel1414/monthlyetfs/main/monthly2-croppedd.png" alt="MonthlyETFs.com Logo" class="banner-img">
     </header>
+
+    <div class="site-network-bar">
+        <div class="site-network-track">
+            <span class="site-network-label">Our Sites:</span>
+            <a href="https://topdividendetfs.com/" class="site-pill" title="Top 100 Dividend ETFs ranked by yield & performance">💵 TopDividendETFs.com</a>
+            <a href="https://weeklyetfs.com/" class="site-pill" title="Best weekly paying dividend ETFs">📅 WeeklyETFs.com</a>
+            <span class="site-pill current" title="You're here">🗓️ MonthlyETFs.com</span>
+            <a href="https://growthetfs.com/" class="site-pill" title="High growth dividend & growth ETFs">📈 GrowthETFs.com</a>
+            <a href="https://topspaceetfs.com/" class="site-pill" title="Best space & aerospace ETFs ranked">🚀 TopSpaceETFs.com</a>
+            <a href="https://etftotalreturns.com/" class="site-pill" title="Total return analysis & performance metrics for ETFs">📊 ETFTotalReturns.com</a>
+            <a href="https://topdividendtools.com/" class="site-pill" title="Best tools & calculators for dividend investors">🛠️ TopDividendTools.com</a>
+        </div>
+    </div>
 
     <div class="main-h1">
         <h1>Top Monthly Dividend ETFs
