@@ -97,6 +97,7 @@
         tr.odd {background:#fff;}
         tr.even{background:var(--light);}
         tr:hover{background:#e0f0ed !important;}
+        tr[data-symbol]{cursor:pointer;}
         .symbol{font-weight:bold !important;font-size:1.25em;color:#000 !important}
         .yield{font-weight:bold !important;color:#000 !important;font-size:1.15em}
         .aum{font-weight:bold;color:var(--primary)}
@@ -331,6 +332,12 @@ function renderTable(csv) {
 
         const tr = document.createElement('tr');
         const labels = ['Symbol', 'Name', 'Dividend Yield', 'AUM', 'Price Decay'];
+        const symbolForLink = cols[0];
+        tr.setAttribute('data-symbol', symbolForLink);
+        tr.title = 'View full scorecard for ' + symbolForLink;
+        tr.addEventListener('click', () => {
+            window.location.href = 'etf.html?symbol=' + encodeURIComponent(symbolForLink);
+        });
 
         labels.forEach((label, j) => {
             const td = document.createElement('td');
