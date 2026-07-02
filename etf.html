@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="index, follow">
+
+  <title id="pageTitle">ETF Scorecard | MonthlyETFs.com</title>
+  <meta id="pageDescription" name="description" content="Full scorecard for this monthly dividend ETF — yield, AUM, price decay, and more, updated daily.">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#ffffff">
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9929351005136304" crossorigin="anonymous"></script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0KJ1FQ12N4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-0KJ1FQ12N4', { send_page_view: false });
+  </script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    html { font-size: 17.6px; }
+    @media (min-width: 1024px) { html { font-size: 18.2px; } }
+    html, body { margin:0; padding:0; overflow-x:hidden !important; width:100%; position:relative; }
+    *, *::before, *::after { box-sizing: border-box; }
+    :root{--primary:#30776C;--light:#EEF1F1;--mid:#9BBCB6;--accent:#62A196;--gray:#C3C3C3;--red:#c62828;--green:#2e8b57;}
+    body{font-family:'Lato',Arial,sans-serif;background:var(--light);color:#333;display:flex;flex-direction:column;align-items:center;min-height:100vh;font-size:1rem}
+    a { color: inherit; }
+
+    header{background:var(--primary);padding:14px 0;text-align:center;width:100%;box-shadow:0 2px 5px rgba(0,0,0,.3);background-image:url('https://www.transparenttextures.com/patterns/noise.png');background-blend-mode:overlay;position:sticky;top:0;z-index:10}
+    .logo-link { display:inline-block; }
+    .banner-img{max-width:100%;height:auto;display:block;margin:0 auto;}
+    @media(min-width:768px){.banner-img{max-width:280px}}
+
+    .site-network-bar{width:100%;background:#fff;border-bottom:1px solid #ddd;padding:6px 0;}
+    .site-network-track{max-width:1000px;margin:0 auto;padding:0 15px;display:flex;align-items:center;justify-content:flex-start;gap:6px;overflow-x:auto;white-space:nowrap;-ms-overflow-style:none;scrollbar-width:none;}
+    .site-network-track::-webkit-scrollbar{display:none;}
+    .site-network-track::after{content:"";flex:0 0 4px;}
+    .site-network-label{font-size:0.51em;text-transform:uppercase;letter-spacing:0.5px;color:#999;font-weight:900;flex-shrink:0;margin-right:2px;}
+    .site-pill{display:inline-flex;align-items:center;gap:4px;padding:4px 9px;border-radius:999px;border:1px solid var(--primary);background:#fff;color:var(--primary);font-size:0.6em;font-weight:700;text-decoration:none;flex-shrink:0;transition:background .15s ease, color .15s ease;}
+    .site-pill:hover{background:var(--primary);color:#fff;}
+    .site-pill.current{background:var(--primary);color:#fff;cursor:default;}
+    @media(min-width:1150px){.site-network-track{justify-content:center;}}
+
+    .content{width:94%;max-width:900px;margin:0 auto;display:flex;flex-direction:column;align-items:center}
+    .back-link{align-self:flex-start;margin:20px 0 4px;font-weight:700;color:var(--primary);text-decoration:none;font-size:0.9em;}
+    .back-link:hover{text-decoration:underline;}
+
+    .loading-state, .error-state{padding:80px 20px;text-align:center;color:#777;width:100%;}
+    .spinner{width:36px;height:36px;border-radius:50%;border:3px solid #ddd;border-top-color:var(--primary);animation:spin .8s linear infinite;margin:0 auto 18px;}
+    @keyframes spin{to{transform:rotate(360deg);}}
+    .error-state h2{color:var(--primary);margin-bottom:10px;}
+    .error-state a{color:var(--primary);font-weight:900;}
+
+    #scorecard{width:100%;display:none;}
+
+    /* NEXT/PREV NAV */
+    .nav-etf-row{display:flex;gap:14px;width:100%;margin:20px auto 18px;}
+    .nav-etf-btn{
+      flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+      padding:16px 14px;border-radius:10px;text-decoration:none;
+      background:var(--primary);color:#fff;border:2px solid var(--accent);
+      box-shadow:0 0 6px rgba(98,161,150,.4), 0 0 14px rgba(98,161,150,.25), 0 4px 14px rgba(0,0,0,.15);
+      animation:navGlow 2.6s infinite ease-in-out;transition:transform .15s ease;
+    }
+    .nav-etf-btn:hover{transform:translateY(-3px) scale(1.02);}
+    .nav-etf-btn .nav-etf-dir{font-size:0.68em;text-transform:uppercase;letter-spacing:1px;opacity:.9;font-weight:700;}
+    .nav-etf-btn .nav-etf-sym{font-size:1.4em;font-weight:900;margin-top:4px;}
+    @keyframes navGlow{
+      0%,100%{box-shadow:0 0 6px rgba(98,161,150,.4), 0 0 14px rgba(98,161,150,.25), 0 4px 14px rgba(0,0,0,.15);}
+      50%{box-shadow:0 0 12px rgba(98,161,150,.65), 0 0 26px rgba(98,161,150,.4), 0 4px 14px rgba(0,0,0,.15);}
+    }
+    @media(max-width:480px){.nav-etf-btn .nav-etf-sym{font-size:1.15em;}}
+
+    /* HERO */
+    .hero-card{
+      width:100%;background:linear-gradient(155deg, var(--primary) 0%, #1f5148 100%);
+      border-radius:14px;padding:30px 24px;text-align:center;margin-bottom:18px;
+      box-shadow:0 10px 30px rgba(0,0,0,.2);
+    }
+    .hero-ticker{font-size:2.1em;font-weight:900;color:#fff;margin:0;}
+    .hero-name{color:rgba(255,255,255,.75);font-size:0.92em;margin:4px 0 22px;}
+    .hero-yield-label{font-size:0.72em;text-transform:uppercase;letter-spacing:2px;color:rgba(255,255,255,.55);font-weight:700;margin-bottom:6px;}
+    .hero-yield-value{font-size:3em;font-weight:900;color:#ffd76a;text-shadow:0 0 22px rgba(255,215,106,.4);line-height:1;}
+    .hero-sub-stats{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:22px;}
+    .hero-mini-stat{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:12px 18px;min-width:110px;}
+    .hero-mini-label{font-size:0.65em;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.5);font-weight:700;margin-bottom:4px;}
+    .hero-mini-value{font-size:1.15em;font-weight:900;color:#fff;}
+    .hero-mini-value.decay-yes{color:#ff9f8f;}
+    .hero-mini-value.decay-no{color:#8ff0c4;}
+
+    /* PANELS */
+    .panel{width:100%;background:#fff;border-radius:10px;border:1px solid #e2e2e2;padding:22px 24px;margin-bottom:16px;box-shadow:0 3px 12px rgba(0,0,0,.06);}
+    .panel-title{font-size:1.02em;font-weight:900;color:var(--primary);margin-bottom:14px;text-align:center;text-transform:uppercase;letter-spacing:0.5px;}
+
+    .compare-item{margin-bottom:14px;}
+    .compare-label{display:flex;justify-content:space-between;font-size:0.85em;font-weight:700;color:#444;margin-bottom:6px;}
+    .compare-label b{color:var(--primary);}
+    .compare-track{background:var(--light);border-radius:8px;height:20px;overflow:hidden;}
+    .compare-fill{height:100%;border-radius:8px;transition:width .5s ease;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;}
+    .compare-fill.this-etf{background:linear-gradient(90deg, var(--primary), #ffd76a);}
+    .compare-fill.average{background:var(--gray);}
+    .compare-fill span{font-size:0.7em;font-weight:900;color:#fff;}
+    .compare-note{font-size:0.82em;color:#777;text-align:center;margin-top:10px;}
+    .compare-note b{color:var(--primary);}
+
+    .detail-row{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid #eee;font-size:0.92em;}
+    .detail-row:last-child{border-bottom:none;}
+    .detail-row .label{color:#777;}
+    .detail-row .value{font-weight:900;color:var(--primary);}
+    .detail-row .value.decay-yes{color:var(--red);}
+    .detail-row .value.decay-no{color:var(--green);}
+
+    .similar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+    @media(max-width:640px){.similar-grid{grid-template-columns:1fr;}}
+    .similar-card{
+      display:block;text-decoration:none;color:inherit;
+      background:var(--light);border:1px solid #ddd;border-radius:10px;
+      padding:14px;text-align:center;transition:transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+    }
+    .similar-card:hover{transform:translateY(-3px);border-color:var(--primary);box-shadow:0 6px 16px rgba(0,0,0,.1);}
+    .similar-card .sim-symbol{font-size:1.15em;font-weight:900;color:var(--primary);}
+    .similar-card .sim-name{font-size:0.72em;color:#888;margin:2px 0 8px;line-height:1.3;height:2.4em;overflow:hidden;}
+    .similar-card .sim-yield{font-size:0.85em;font-weight:900;color:var(--primary);}
+
+    .cta-row{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin:6px auto 18px;}
+    .cta-btn{display:inline-block;padding:11px 24px;border-radius:8px;font-weight:900;font-size:0.92em;text-decoration:none;box-shadow:0 3px 10px rgba(0,0,0,.15);transition:all .2s;}
+    .cta-btn.primary{background:var(--primary);color:#fff;}
+    .cta-btn.primary:hover{background:#265e56;transform:translateY(-2px);}
+    .cta-btn.ghost{background:#fff;color:var(--primary);border:1px solid var(--primary);}
+    .cta-btn.ghost:hover{background:var(--light);}
+
+    .disclaimer{font-size:0.85em;color:#666;margin:10px auto 40px;max-width:900px;line-height:1.5;text-align:center;}
+
+    .footer{font-size:0.9em;color:#555;margin:0 auto 20px;padding-top:15px;border-top:1px solid #ddd;max-width:900px;text-align:center;width:90%;}
+    .footer a{color:var(--primary);text-decoration:none;font-weight:700;}
+    .footer a:hover{text-decoration:underline;}
+
+    @media(max-width:560px){
+      .hero-yield-value{font-size:2.3em;}
+      .panel{padding:18px 16px;}
+    }
+  </style>
+</head>
+<body>
+  <header onclick="location.href='/'">
+    <img src="https://raw.githubusercontent.com/benjiesiegel1414/monthlyetfs/main/monthly2-croppedd.png" alt="MonthlyETFs.com Logo" class="banner-img">
+  </header>
+
+  <div class="site-network-bar">
+    <div class="site-network-track">
+      <span class="site-network-label">Our Sites:</span>
+      <a href="https://topdividendetfs.com/" class="site-pill" title="Top 100 Dividend ETFs ranked by yield & performance">💵 TopDividendETFs.com</a>
+      <a href="https://weeklyetfs.com/" class="site-pill" title="Best weekly paying dividend ETFs">📅 WeeklyETFs.com</a>
+      <span class="site-pill current" title="You're here">🗓️ MonthlyETFs.com</span>
+      <a href="https://growthetfs.com/" class="site-pill" title="High growth dividend & growth ETFs">📈 GrowthETFs.com</a>
+      <a href="https://topspaceetfs.com/" class="site-pill" title="Best space & aerospace ETFs ranked">🚀 TopSpaceETFs.com</a>
+      <a href="https://etftotalreturns.com/" class="site-pill" title="Total return analysis & performance metrics for ETFs">📊 ETFTotalReturns.com</a>
+      <a href="https://topdividendtools.com/" class="site-pill" title="Best tools & calculators for dividend investors">🛠️ TopDividendTools.com</a>
+    </div>
+  </div>
+
+  <div class="content">
+    <a href="/" class="back-link">← Back to All Rankings</a>
+
+    <div class="loading-state" id="loadingState">
+      <div class="spinner"></div>
+      <div>Loading scorecard…</div>
+    </div>
+
+    <div class="error-state" id="errorState" style="display:none;">
+      <h2>ETF Not Found</h2>
+      <p>We couldn't find a ticker matching that symbol in our rankings.</p>
+      <p><a href="/">← View All Monthly ETFs</a></p>
+    </div>
+
+    <div id="scorecard">
+
+      <div class="nav-etf-row" id="navEtfRow"></div>
+
+      <div class="hero-card">
+        <h1 class="hero-ticker" id="heroTicker">—</h1>
+        <p class="hero-name" id="heroName">—</p>
+        <div class="hero-yield-label">Dividend Yield</div>
+        <div class="hero-yield-value" id="heroYield">—</div>
+        <div class="hero-sub-stats">
+          <div class="hero-mini-stat">
+            <div class="hero-mini-label">AUM</div>
+            <div class="hero-mini-value" id="heroAUM">—</div>
+          </div>
+          <div class="hero-mini-stat">
+            <div class="hero-mini-label">Price Decay</div>
+            <div class="hero-mini-value" id="heroDecay">—</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">Yield vs. The Field</div>
+        <div class="compare-item">
+          <div class="compare-label"><span>This ETF</span><b id="compareThisLabel">—</b></div>
+          <div class="compare-track"><div class="compare-fill this-etf" id="compareThisBar"><span id="compareThisText"></span></div></div>
+        </div>
+        <div class="compare-item">
+          <div class="compare-label"><span>Average of all tracked ETFs</span><b id="compareAvgLabel">—</b></div>
+          <div class="compare-track"><div class="compare-fill average" id="compareAvgBar"><span id="compareAvgText"></span></div></div>
+        </div>
+        <div class="compare-note" id="compareNote"></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">Fund Details</div>
+        <div class="detail-row"><span class="label">Ticker Symbol</span><span class="value" id="detailSymbol">—</span></div>
+        <div class="detail-row"><span class="label">ETF Name</span><span class="value" id="detailName">—</span></div>
+        <div class="detail-row"><span class="label">Dividend Yield</span><span class="value" id="detailYield">—</span></div>
+        <div class="detail-row"><span class="label">AUM</span><span class="value" id="detailAUM">—</span></div>
+        <div class="detail-row"><span class="label">Price Decay</span><span class="value" id="detailDecay">—</span></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">Similar ETFs You Might Like</div>
+        <div class="similar-grid" id="similarGrid"></div>
+      </div>
+
+      <div class="cta-row">
+        <a href="/" class="cta-btn primary">← Compare All Monthly ETFs</a>
+        <a href="/blog.html" class="cta-btn ghost">Read the Blog →</a>
+      </div>
+
+      <p class="disclaimer">
+        Disclaimer: MonthlyETFs.com is for educational purposes only. ETF data and dividend information may be inaccurate or outdated. Investing carries risk, including loss of principal. We are not financial advisors & this is NOT Financial Advice. Always consult a licensed financial advisor before making investment decisions.
+      </p>
+
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>
+      <a href="terms.html">Terms of Use</a> |
+      <a href="privacy.html">Privacy Policy</a> |
+      <a href="faq.html">FAQ</a> |
+      <a href="/blog.html">Blog</a> |
+      <a href="https://topdividendetfs.com/" target="_blank" rel="noopener">Top Dividend ETFs</a>
+    </p>
+  </footer>
+
+<script>
+const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSscSF78pEGxi9Lcx2YHZjHHAkyy75b5Icb6A8nK2aehtmEq-xgpFPA7sQdkmZYKjkUdrtPL1SdMm62/pub?output=csv';
+
+function getQueryParam(name) { return new URLSearchParams(window.location.search).get(name); }
+
+function trackScorecardPageview(symbol, name) {
+  const path = '/etf/' + encodeURIComponent(symbol);
+  const title = name + ' (' + symbol + ') — ETF Scorecard | MonthlyETFs.com';
+  document.title = title;
+  gtag('event', 'page_view', { page_path: path, page_title: title, page_location: window.location.origin + path });
+}
+
+async function loadScorecard() {
+  const symbol = (getQueryParam('symbol') || '').trim().toUpperCase();
+  const loadingEl = document.getElementById('loadingState');
+  const errorEl = document.getElementById('errorState');
+  const cardEl = document.getElementById('scorecard');
+
+  if (!symbol) { loadingEl.style.display = 'none'; errorEl.style.display = 'block'; return; }
+
+  try {
+    const res = await fetch(CSV_URL + '&t=' + Date.now());
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const csv = await res.text();
+    const lines = csv.split('\n');
+
+    let match = null;
+    const allRows = [];
+
+    for (let i = 1; i < lines.length; i++) {
+      const cols = lines[i].split(',').map(c => c.replace(/^"|"$/g, '').trim());
+      if (!cols[0]) continue;
+      const rowObj = {
+        symbol: cols[0], name: cols[1] || cols[0], yieldStr: cols[2] || '—',
+        aum: cols[3] || '—', decay: cols[4] || '—',
+        yieldNum: parseFloat((cols[2] || '').replace('%','')) || 0
+      };
+      allRows.push(rowObj);
+      if (cols[0].toUpperCase() === symbol) match = rowObj;
+    }
+
+    if (!match) { loadingEl.style.display = 'none'; errorEl.style.display = 'block'; return; }
+
+    const sym = match.symbol, name = match.name, yieldStr = match.yieldStr, aum = match.aum, decay = match.decay;
+    const yieldNum = match.yieldNum;
+
+    document.getElementById('heroTicker').textContent = sym;
+    document.getElementById('heroName').textContent = name;
+    document.getElementById('heroYield').textContent = yieldStr.includes('%') ? yieldStr : yieldStr + '%';
+    document.getElementById('heroAUM').textContent = aum;
+    const heroDecayEl = document.getElementById('heroDecay');
+    heroDecayEl.textContent = decay;
+    heroDecayEl.className = 'hero-mini-value ' + (decay.toLowerCase() === 'yes' ? 'decay-yes' : 'decay-no');
+
+    document.getElementById('detailSymbol').textContent = sym;
+    document.getElementById('detailName').textContent = name;
+    document.getElementById('detailYield').textContent = yieldStr;
+    document.getElementById('detailAUM').textContent = aum;
+    const detailDecayEl = document.getElementById('detailDecay');
+    detailDecayEl.textContent = decay;
+    detailDecayEl.className = 'value ' + (decay.toLowerCase() === 'yes' ? 'decay-yes' : decay.toLowerCase() === 'no' ? 'decay-no' : '');
+
+    // ══════════════ YIELD VS FIELD ══════════════
+    const allYields = allRows.map(r => r.yieldNum).filter(v => !isNaN(v));
+    const avgYield = allYields.length ? (allYields.reduce((a,b)=>a+b,0) / allYields.length) : 0;
+    const sortedDesc = [...allYields].sort((a,b) => b - a);
+    const rankPos = sortedDesc.findIndex(v => v === yieldNum) + 1;
+
+    const maxScale = Math.max(yieldNum, avgYield, 1) * 1.15;
+    const thisPct = Math.min((yieldNum / maxScale) * 100, 100);
+    const avgPct = Math.min((avgYield / maxScale) * 100, 100);
+    document.getElementById('compareThisBar').style.width = thisPct + '%';
+    document.getElementById('compareThisText').textContent = yieldStr;
+    document.getElementById('compareAvgBar').style.width = avgPct + '%';
+    document.getElementById('compareAvgText').textContent = avgYield.toFixed(1) + '%';
+    document.getElementById('compareThisLabel').textContent = yieldStr;
+    document.getElementById('compareAvgLabel').textContent = avgYield.toFixed(1) + '%';
+
+    const diff = yieldNum - avgYield;
+    let noteHtml = sym + ' ranks <b>#' + rankPos + ' of ' + allYields.length + '</b> by yield, ';
+    noteHtml += diff >= 0
+      ? 'yielding <b>' + diff.toFixed(1) + ' points above</b> the group average.'
+      : 'yielding <b>' + Math.abs(diff).toFixed(1) + ' points below</b> the group average.';
+    document.getElementById('compareNote').innerHTML = noteHtml;
+
+    // ══════════════ NEXT / PREV (sorted by yield) ══════════════
+    const sortedByYield = [...allRows].sort((a,b) => b.yieldNum - a.yieldNum || a.symbol.localeCompare(b.symbol));
+    const curIdx = sortedByYield.findIndex(r => r.symbol.toUpperCase() === sym.toUpperCase());
+    if (curIdx !== -1 && sortedByYield.length > 1) {
+      const prevRow = sortedByYield[(curIdx - 1 + sortedByYield.length) % sortedByYield.length];
+      const nextRow = sortedByYield[(curIdx + 1) % sortedByYield.length];
+      document.getElementById('navEtfRow').innerHTML = `
+        <a class="nav-etf-btn" href="etf.html?symbol=${encodeURIComponent(prevRow.symbol)}">
+          <span class="nav-etf-dir">← Previous</span>
+          <span class="nav-etf-sym">${prevRow.symbol}</span>
+        </a>
+        <a class="nav-etf-btn" href="etf.html?symbol=${encodeURIComponent(nextRow.symbol)}">
+          <span class="nav-etf-dir">Next →</span>
+          <span class="nav-etf-sym">${nextRow.symbol}</span>
+        </a>`;
+    }
+
+    // ══════════════ SIMILAR ETFS (closest yield) ══════════════
+    const similar = allRows
+      .filter(r => r.symbol.toUpperCase() !== sym.toUpperCase())
+      .map(r => ({ ...r, score: Math.abs(r.yieldNum - yieldNum) }))
+      .sort((a,b) => a.score - b.score)
+      .slice(0, 3);
+
+    document.getElementById('similarGrid').innerHTML = similar.map(r => `
+      <a class="similar-card" href="etf.html?symbol=${encodeURIComponent(r.symbol)}">
+        <div class="sim-symbol">${r.symbol}</div>
+        <div class="sim-name">${r.name}</div>
+        <div class="sim-yield">${r.yieldStr}</div>
+      </a>`).join('');
+
+    document.getElementById('pageTitle').textContent = name + ' (' + sym + ') — ETF Scorecard | MonthlyETFs.com';
+    document.getElementById('pageDescription').setAttribute('content', name + ' (' + sym + ') scorecard: dividend yield ' + yieldStr + ', AUM ' + aum + '. Updated daily.');
+
+    loadingEl.style.display = 'none';
+    cardEl.style.display = 'block';
+
+    trackScorecardPageview(sym, name);
+
+  } catch (err) {
+    console.error(err);
+    loadingEl.style.display = 'none';
+    errorEl.style.display = 'block';
+  }
+}
+
+loadScorecard();
+</script>
+</body>
+</html>
