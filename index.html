@@ -385,6 +385,30 @@ function renderTable(csv) {
     sortTable(2, 'desc');
 }
 
+/* ── Numeric parsers for sortable columns ── */
+
+// "12.24%" -> 12.24 ; blanks / "-" / "N/A" -> null
+function parseYieldValue(str) {
+    if (!str) return null;
+    const s = str.trim();
+    if (s === '-' || s.toUpperCase() === 'N/A' || s === '') return null;
+    const num = parseFloat(s.replace(/[%,$\s]/g, ''));
+    return isNaN(num) ? null : num;
+}
+
+// "$8.30B" -> 8300000000 ; "$566M" -> 566000000 ; "$1,650" -> 1650
+const AUM_MULTIPLIERS = { T: 1e12, B: 1e9, M: 1e6, K: 1e3 };
+function parseAUMValue(str) {
+    if (!str) return null;
+    const s = str.trim().toUpperCase();
+    if (s === '-' || s === 'N/A' || s === '') return null;
+    const match = s.match(/(-?[\d.,]+)\s*([TBMK])?/);
+    if (!match) return null;
+    const num = parseFloat(match[1].replace(/,/g, ''));
+    if (isNaN(num)) return null;
+    return num * (AUM_MULTIPLIERS[match[2]] || 1);
+}
+
 let currentSort = {col: 2, dir: 'desc'};
 
 function sortTable(col, forceDir) {
@@ -396,14 +420,13 @@ function sortTable(col, forceDir) {
         let A = a.cells[col].textContent.trim();
         let B = b.cells[col].textContent.trim();
 
-        if (col === 2) {
-            const parseYield = (str) => {
-                if (!str || str === '-' || str === 'N/A') return null;
-                return parseFloat(str.replace(/[%,]/g, '')) || null;
-            };
-            const numA = parseYield(A);
-            const numB = parseYield(B);
+        // Numeric columns: 2 = Dividend Yield, 3 = AUM
+        if (col === 2 || col === 3) {
+            const parser = (col === 2) ? parseYieldValue : parseAUMValue;
+            const numA = parser(A);
+            const numB = parser(B);
 
+            // Missing values always sink to the bottom, regardless of direction
             if (numA === null && numB === null) return 0;
             if (numA === null) return 1;
             if (numB === null) return -1;
@@ -430,8 +453,7 @@ function applyFilters() {
         const cells = tr.cells;
         const ticker = cells[0].textContent.toLowerCase();
         const name = cells[1].textContent.toLowerCase();
-        const yieldText = cells[2].textContent.replace('%','').trim();
-        const yieldVal = parseFloat(yieldText) || 0;
+        const yieldVal = parseYieldValue(cells[2].textContent) || 0;
         const decay = cells[4].textContent.trim().toLowerCase();
 
         let show = true;
