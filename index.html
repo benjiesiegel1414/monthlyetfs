@@ -258,9 +258,9 @@
             <tr>
                 <th onclick="sortTable(0)">Symbol</th>
                 <th onclick="sortTable(1)">Name</th>
-                <th onclick="sortTable(2)" class="sort-desc">Dividend Yield</th>
+                <th onclick="sortTable(2)">Dividend Yield</th>
                 <th onclick="sortTable(3)">AUM</th>
-                <th onclick="sortTable(4)">Price Decay</th>
+                <th onclick="sortTable(4)" class="sort-asc">Price Decay</th>
             </tr>
         </thead>
         <tbody id="etfBody"></tbody>
@@ -382,7 +382,9 @@ function renderTable(csv) {
     applyRowColors();
     document.getElementById('loading').style.display = 'none';
     document.getElementById('etfTable').style.display = 'table';
-    sortTable(2, 'desc');
+
+    // DEFAULT LANDING SORT: No price decay first, then highest yield within each group
+    sortTable(4, 'asc');
 }
 
 /* ── Numeric parsers for sortable columns ── */
@@ -409,7 +411,26 @@ function parseAUMValue(str) {
     return num * (AUM_MULTIPLIERS[match[2]] || 1);
 }
 
-let currentSort = {col: 2, dir: 'desc'};
+// "No" -> 0 ; "Yes" -> 1 ; blanks / "-" / "N/A" / anything else -> null (always sinks)
+function parseDecayRank(str) {
+    if (!str) return null;
+    const s = str.trim().toLowerCase();
+    if (s === 'no' || s === 'n') return 0;
+    if (s === 'yes' || s === 'y') return 1;
+    return null;
+}
+
+// Shared tiebreak: highest yield first, unknown yields last
+function yieldTiebreak(a, b) {
+    const yA = parseYieldValue(a.cells[2].textContent);
+    const yB = parseYieldValue(b.cells[2].textContent);
+    if (yA === null && yB === null) return 0;
+    if (yA === null) return 1;
+    if (yB === null) return -1;
+    return yB - yA;
+}
+
+let currentSort = {col: 4, dir: 'asc'};
 
 function sortTable(col, forceDir) {
     const dir = forceDir || (currentSort.col === col && currentSort.dir === 'asc' ? 'desc' : 'asc');
@@ -419,6 +440,20 @@ function sortTable(col, forceDir) {
     allRows.sort((a, b) => {
         let A = a.cells[col].textContent.trim();
         let B = b.cells[col].textContent.trim();
+
+        // Price Decay column: No/Yes grouping, then yield desc inside each group
+        if (col === 4) {
+            const rankA = parseDecayRank(A);
+            const rankB = parseDecayRank(B);
+
+            // Unknown decay values always sink to the bottom, regardless of direction
+            if (rankA === null && rankB === null) return yieldTiebreak(a, b);
+            if (rankA === null) return 1;
+            if (rankB === null) return -1;
+
+            if (rankA !== rankB) return dir === 'asc' ? (rankA - rankB) : (rankB - rankA);
+            return yieldTiebreak(a, b);
+        }
 
         // Numeric columns: 2 = Dividend Yield, 3 = AUM
         if (col === 2 || col === 3) {
