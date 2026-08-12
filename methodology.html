@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How This List Is Built – MonthlyETFs.com</title>
+<meta name="description" content="How ETFs are added to and removed from the Curated List of Top Monthly ETFs on MonthlyETFs.com — an editorial explanation of the process.">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="How This List Is Built – MonthlyETFs.com">
+<meta property="og:description" content="How ETFs are added to and removed from the Curated List of Top Monthly ETFs on MonthlyETFs.com.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://monthlyetfs.com/methodology.html">
+<meta name="twitter:card" content="summary">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0KJ1FQ12N4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-0KJ1FQ12N4');
+</script>
+
+<style>
+  :root {
+    --teal: #30776C;
+    --teal-dark: #245951;
+    --bg: #f4f4f4;
+    --card: #ffffff;
+    --text: #1c1c1c;
+    --muted: #5c6b69;
+    --border: #dfe7e5;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: 'Lato', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+  }
+
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--teal);
+    color: #fff;
+    padding: 14px 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  }
+
+  .header-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .logo-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 900;
+    font-size: 1.15rem;
+  }
+
+  .logo-link img {
+    height: 32px;
+    width: auto;
+    display: block;
+  }
+
+  .site-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 0.82rem;
+  }
+
+  .site-pills a {
+    color: #fff;
+    text-decoration: none;
+    background: rgba(255,255,255,0.14);
+    padding: 5px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .site-pills a:hover,
+  .site-pills span.current {
+    background: rgba(255,255,255,0.28);
+  }
+
+  .site-pills span.current {
+    padding: 5px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  main {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 40px 20px 60px;
+  }
+
+  .eyebrow {
+    color: var(--teal);
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+    margin: 0 0 20px;
+    color: var(--teal-dark);
+  }
+
+  .lede {
+    font-size: 1.08rem;
+    color: var(--muted);
+    margin-bottom: 30px;
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 30px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+
+  .card p {
+    margin: 0 0 16px;
+  }
+
+  .card p:last-child {
+    margin-bottom: 0;
+  }
+
+  .card strong {
+    color: var(--teal-dark);
+  }
+
+  .fine-print {
+    font-size: 0.85rem;
+    color: var(--muted);
+    border-left: 3px solid var(--teal);
+    padding-left: 14px;
+    margin-top: 32px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 30px;
+    color: var(--teal-dark);
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    text-decoration: underline;
+  }
+
+  footer {
+    background: #fff;
+    border-top: 1px solid var(--border);
+    padding: 28px 20px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  footer a {
+    color: var(--teal-dark);
+    text-decoration: none;
+    margin: 0 8px;
+  }
+
+  footer a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 640px) {
+    h1 { font-size: 1.6rem; }
+    .card { padding: 22px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="https://monthlyetfs.com/" class="logo-link">
+      <img src="https://raw.githubusercontent.com/benjiesiegel1414/monthlyetfs/main/monthly2-croppedd.png" alt="MonthlyETFs.com Logo">
+    </a>
+    <nav class="site-pills">
+      <a href="https://topdividendetfs.com/">💵 TopDividendETFs.com</a>
+      <a href="https://weeklyetfs.com/">📅 WeeklyETFs.com</a>
+      <span class="current">🗓️ MonthlyETFs.com</span>
+      <a href="https://growthetfs.com/">📈 GrowthETFs.com</a>
+      <a href="https://topspaceetfs.com/">🚀 TopSpaceETFs.com</a>
+      <a href="https://etftotalreturns.com/">📊 ETFTotalReturns.com</a>
+      <a href="https://topdividendtools.com/">🛠️ TopDividendTools.com</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="eyebrow">Editorial Process</div>
+  <h1>How This List Is Built</h1>
+  <p class="lede">Why certain ETFs appear on the Curated List of Top Monthly ETFs — and how names get added or removed over time.</p>
+
+  <div class="card">
+    <p>I'm a full-time dividend and income investing content creator, and building this list isn't a formula I plug tickers into, it's a reflection of where my attention, and the community's attention, actually is.</p>
+
+    <p>I invest heavily in dividend and income ETFs myself, so I have real, personal exposure to a lot of what shows up here. Beyond my own portfolio, I spend my days deep in the space: tracking new fund launches, following how issuers are structuring new strategies, and staying on top of what's actually moving in the monthly-income ETF world. That's paired with a constant flow of input from the community I talk to every day — through DevotedDividend, through the sites, through comments and DMs — about what they're buying, what they're watching, and what they want me to dig into next.</p>
+
+    <p>The names on this list are the result of all of that coming together. Some are funds I personally hold and believe are worth watching. Some are funds the community keeps bringing up. Some are newer or lesser-known ETFs I think deserve more attention because of how they're structured or what they're trying to do. What they all have in common is that they pay monthly distributions and, in my judgment, are worth a spot on this page — whether that's because they're proven, because they're gaining traction, or because they're simply worth learning more about.</p>
+
+    <p>This list isn't static, and it isn't mechanical. Names get added when something earns a spot, and they get removed when they no longer fit, whether that's because the story around the fund has changed, better options have emerged, or it's just time to make room for something more relevant. That's an ongoing, editorial call I make based on research, personal investing experience, and the pulse of the community — not a fixed screen that spits out the same names every time.</p>
+
+    <p><strong>Once a fund is on the list, its position is sorted by dividend yield</strong>, pulled from the live data feed. But which funds make the list in the first place is entirely my editorial judgment.</p>
+  </div>
+
+  <p class="fine-print">Placement on this list is editorial and is not for sale. Sponsor and advertiser relationships (shown as clearly labeled banner ads on this site) do not influence which ETFs appear on this list, their ranking, or their placement. This page is for educational and entertainment purposes only and is not financial advice.</p>
+
+  <a href="https://monthlyetfs.com/" class="back-link">← Back to the Curated List</a>
+</main>
+
+<footer>
+  <a href="https://monthlyetfs.com/terms.html">Terms of Use</a> |
+  <a href="https://monthlyetfs.com/privacy.html">Privacy Policy</a> |
+  <a href="https://monthlyetfs.com/faq.html">FAQ</a> |
+  <a href="https://monthlyetfs.com/blog.html">Blog</a> |
+  <a href="https://monthlyetfs.com/all-monthly-dividend-etfs.html">All Monthly ETFs</a> |
+  <a href="https://topdividendetfs.com/">Top Dividend ETFs</a>
+  <br><br>
+  Contact: <a href="mailto:Business@TopDividendETFs.com">Business@TopDividendETFs.com</a>
+</footer>
+
+</body>
+</html>
