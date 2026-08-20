@@ -179,6 +179,39 @@
             .sponsored-label { font-size: 0.74em; margin-bottom: 14px; }
         }
 
+        /* ────────────────────────────────────── SPONSOR BANNER (matches TopDividendETFs.com) ────────────────────────────────────── */
+        /* Center the banner and keep it clickable */
+        .banner {
+            width: 90%;
+            max-width: 1000px;
+            margin: 15px auto;
+            padding: 0;
+            background: none;
+            border-radius: 0;
+            box-shadow: none;
+            display: flex;
+            flex-direction: column;     /* ← Stack image + label */
+            align-items: center;        /* ← Center everything */
+            gap: 6px;                   /* ← Space between image and text */
+        }
+
+        /* Image shows at its **true** pixel dimensions */
+        .banner img {
+            display: block;
+            width: auto;              /* let the browser use the intrinsic width */
+            height: auto;             /* let the browser use the intrinsic height */
+            max-width: 100%;          /* never overflow the container on small screens */
+            object-fit: contain;      /* preserve aspect ratio */
+            background: transparent;
+            transition: transform .3s ease;
+        }
+
+        /* Optional hover zoom – still works at true size */
+        .banner:hover img {
+            transform: scale(1.02);
+        }
+        /* ────────────────────────────────────── END SPONSOR BANNER ────────────────────────────────────── */
+
         /* ────────────────────────────────────── SITE NETWORK BAR ────────────────────────────────────── */
         .site-network-bar{width:100%;background:#fff;border-bottom:1px solid #ddd;padding:6px 0;}
         .site-network-track{max-width:1150px;margin:0 auto;padding:0 15px;display:flex;align-items:center;justify-content:flex-start;gap:6px;overflow-x:auto;white-space:nowrap;-ms-overflow-style:none;scrollbar-width:none;}
@@ -225,15 +258,13 @@
         <strong>*MonthlyETFs.com is for entertainment purposes ONLY!*</strong>
     </div>
 
-<!-- Display Banner Ad -->
-<div style="text-align: center; margin: 20px auto; max-width: 970px; width: 100%;">
-  <a href="https://incomeshares.com/en-eu/etps/incomeshares-gold-yield-etp" target="_blank" rel="sponsored noopener">
-    <img src="https://raw.githubusercontent.com/benjiesiegel1414/monthlyetfs/main/ls%20Gold%20-%20728x90.png" 
-         alt="IncomeShares Gold+ Yield ETP" 
-         loading="eager" 
-         style="max-width:100%; height:auto; display:block; margin:0 auto; border-radius:8px; box-shadow:0 4px 16px rgba(0,0,0,0.12);">
-  </a>
-  <div style="margin-top:8px; font-size:0.82rem; color:#555; font-weight:500;">Sponsored By</div>
+<!-- ══════════ OVL SPONSOR BANNER (top) ══════════ -->
+<div class="banner">
+    <a href="https://lsfunds.com/etfs/ovl" target="_blank" rel="sponsored noopener noreferrer">
+        <img src="https://raw.githubusercontent.com/benjiesiegel1414/topdividendetfs-site/main/Revised%20Top%20Dividend%20Tools%20OVL%20ad.png" alt="Liquid Strategies OVL ETF">
+    </a>
+    <small style="color:#666; font-size:0.78em; font-weight:600;">Sponsored By</small>
+    <small style="color:#666; font-size:0.78em; font-weight:400; text-align:center; max-width:100%; overflow-wrap:anywhere;">Read carefully before investing. Prospectus: <a href="https://lsfunds.com/hubfs/Regulatory/Prospectus.pdf?hsLang=en" target="_blank" rel="noopener noreferrer" style="color:#666 !important; font-family:inherit !important; font-size:inherit !important; font-weight:400 !important; text-shadow:none !important; background:none !important; letter-spacing:normal; text-decoration:underline !important;">https://lsfunds.com/hubfs/Regulatory/Prospectus.pdf?hsLang=en</a></small>
 </div>
 
     <div id="filters">
@@ -272,6 +303,15 @@
         📋 <a href="/all-monthly-dividend-etfs.html">Browse all monthly dividend ETFs with full data pages &amp; income calculators →</a>
     </div>
 
+<!-- ══════════ OVL SPONSOR BANNER (bottom) ══════════ -->
+<div class="banner">
+    <a href="https://lsfunds.com/etfs/ovl" target="_blank" rel="sponsored noopener noreferrer">
+        <img src="https://raw.githubusercontent.com/benjiesiegel1414/topdividendetfs-site/main/Revised%20Top%20Dividend%20Tools%20OVL%20ad.png" alt="Liquid Strategies OVL ETF">
+    </a>
+    <small style="color:#666; font-size:0.78em; font-weight:600;">Sponsored By</small>
+    <small style="color:#666; font-size:0.78em; font-weight:400; text-align:center; max-width:100%; overflow-wrap:anywhere;">Read carefully before investing. Prospectus: <a href="https://lsfunds.com/hubfs/Regulatory/Prospectus.pdf?hsLang=en" target="_blank" rel="noopener noreferrer" style="color:#666 !important; font-family:inherit !important; font-size:inherit !important; font-weight:400 !important; text-shadow:none !important; background:none !important; letter-spacing:normal; text-decoration:underline !important;">https://lsfunds.com/hubfs/Regulatory/Prospectus.pdf?hsLang=en</a></small>
+</div>
+
     <p class="disclaimer">
         Disclaimer: MonthlyETFs.com is for educational purposes only. ETF data and dividend information may be inaccurate or outdated. Investing carries risk, including loss of principal. We are not financial advisors & this is NOT Financial Advice. Always consult a licensed financial advisor before making investment decisions.
     </p>
@@ -279,17 +319,6 @@
     <button class="back-to-top" onclick="location.reload()">Back To Top</button>
 
     <footer class="footer">
-<!-- Display Banner Ad -->
-<div style="text-align: center; margin: 20px auto; max-width: 970px; width: 100%;">
-  <a href="https://leverageshares.com/en-eu/etps/leverage-shares-3x-long-spacex-etp/" target="_blank" rel="sponsored noopener">
-    <img src="https://raw.githubusercontent.com/benjiesiegel1414/monthlyetfs/main/LS%203x%20Long%20SpaceX%20-%20728x90.png" 
-         alt="Leverage Shares 3x Long SpaceX ETP" 
-         loading="eager" 
-         style="max-width:100%; height:auto; display:block; margin:0 auto; border-radius:8px; box-shadow:0 4px 16px rgba(0,0,0,0.12);">
-  </a>
-  <div style="margin-top:8px; font-size:0.82rem; color:#555; font-weight:500;">Sponsored By</div>
-</div>
-
         <p>
             <a href="terms.html">Terms of Use</a> | 
             <a href="privacy.html">Privacy Policy</a> | 
