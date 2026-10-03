@@ -459,6 +459,7 @@ ${faqHtml}
   <li><a href="/">The live monthly ETF screener</a> — filter by yield range and price decay</li>
   <li><a href="/best-etfs-for-monthly-income-2026.html">Best ETFs for Monthly Income 2026</a> — every category explained</li>
   <li><a href="/qqqi-etf-dividend-guide-2026.html">$QQQI deep dive</a> and <a href="/spyi-etf-dividend-guide-2026.html">$SPYI deep dive</a> — full fund guides</li>
+  <li><a href="/sgov-dividend-2026.html">$SGOV dividend dates and history</a>: how much the biggest T-bill ETF pays per month</li>
   <li><a href="https://weeklyetfs.com/" target="_blank" rel="noopener">Prefer weekly income?</a> — every weekly paying ETF ranked</li>
 </ul>
 
@@ -539,6 +540,7 @@ ${allCount > built.length ? `<p><em>Showing ${built.length} of ${allCount} funds
   <li><a href="/top-10-highest-yield-monthly-etfs-2026">Top 10 Highest Yield Monthly ETFs 2026</a></li>
   <li><a href="/qqqi-etf-dividend-guide-2026.html">$QQQI ETF Dividend Guide 2026</a></li>
   <li><a href="/spyi-etf-dividend-guide-2026.html">$SPYI ETF Dividend Guide 2026</a></li>
+  <li><a href="/sgov-dividend-2026.html">$SGOV Dividend 2026: Monthly Payouts, Dates &amp; History</a></li>
 </ul>
 
 <p class="disclaimer">
@@ -564,6 +566,7 @@ function buildSitemap(built) {
     { loc: `${SITE}/top-10-highest-yield-monthly-etfs-2026`, pri: '0.7', freq: 'monthly' },
     { loc: `${SITE}/qqqi-etf-dividend-guide-2026.html`, pri: '0.8', freq: 'monthly' },
     { loc: `${SITE}/spyi-etf-dividend-guide-2026.html`, pri: '0.8', freq: 'monthly' },
+    { loc: `${SITE}/sgov-dividend-2026.html`, pri: '0.8', freq: 'monthly' },
     { loc: `${SITE}/advertise`, pri: '0.5', freq: 'monthly' },
     { loc: `${SITE}/faq.html`, pri: '0.4', freq: 'yearly' },
     { loc: `${SITE}/terms.html`, pri: '0.3', freq: 'yearly' },
