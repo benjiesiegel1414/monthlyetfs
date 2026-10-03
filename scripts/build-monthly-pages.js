@@ -231,7 +231,12 @@ details.faq .faq-body{padding:0 16px 14px;font-size:.92em}
 .badge-tier{background:rgba(48,119,108,.1);color:var(--primary);border:1px solid var(--mid)}
 `;
 
-function head({ title, desc, canonical, extraJsonLd }) {
+function tickerOgImage(sym) {
+  const f = String(sym).toLowerCase() + '-etf-wide.png';
+  return fs.existsSync(path.join(OUT_DIR, 'etf-images', f)) ? `${SITE}/etf-images/${f}` : OG_IMAGE;
+}
+
+function head({ title, desc, canonical, extraJsonLd, ogImage = OG_IMAGE }) {
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -246,14 +251,14 @@ function head({ title, desc, canonical, extraJsonLd }) {
 <meta name="theme-color" content="#ffffff">
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(desc)}">
-<meta property="og:image" content="${OG_IMAGE}">
+<meta property="og:image" content="${ogImage}">
 <meta property="og:url" content="${canonical}">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="MonthlyETFs.com">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(title)}">
 <meta name="twitter:description" content="${esc(desc)}">
-<meta name="twitter:image" content="${OG_IMAGE}">
+<meta name="twitter:image" content="${ogImage}">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE}" crossorigin="anonymous"></script>
 <meta name="google-site-verification" content="XmPDmAe5OeTWMAVQVs3PENLebSFlRYF-04j1-QogGLU">
 <meta name="msvalidate.01" content="C66A48BDFAA2F813D992F39A8BBB3EF1">
@@ -365,7 +370,7 @@ function buildTickerPage(f, all, idx) {
   const title = `$${t} Monthly Dividend 2026: ${f.yield.toFixed(2)}% Yield, Income Calculator & Price Decay`;
   const desc = `${t} monthly dividend data — ${f.yield.toFixed(2)}% distribution rate, ranked #${idx + 1} of ${all.length} monthly payers. See how much you need to invest for $1,000/month, price decay status, and the closest alternatives.`;
 
-  return `${head({ title: title.replace(/^\$/, ''), desc, canonical: url, extraJsonLd: jsonLd })}
+  return `${head({ title: title.replace(/^\$/, ''), desc, canonical: url, extraJsonLd: jsonLd, ogImage: tickerOgImage(t) })}
 
 <nav class="breadcrumb"><a href="/">Home</a> › <a href="/all-monthly-dividend-etfs.html">All Monthly ETFs</a> › $${esc(t)}</nav>
 
