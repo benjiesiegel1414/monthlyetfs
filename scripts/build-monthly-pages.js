@@ -400,6 +400,10 @@ function buildTickerPage(f, all, idx) {
   <span class="badge badge-tier">Top ${pct}% by yield</span>
 </p>
 
+<!-- EMAIL SIGNUP -->
+<div class="etf-signup" data-variant="featured" data-color="#30776C" data-accent="#1d4d46" data-source="monthlyetfs"></div>
+<script src="/email-signup.js" defer></script>
+
 <h2>How Much $${esc(t)} Do You Need for Monthly Income?</h2>
 
 <p>This is the calculation most people actually want. At $${esc(t)}'s current <strong>${f.yield.toFixed(2)}%</strong> distribution rate, here is the capital required to hit common monthly income targets:</p>
@@ -521,6 +525,10 @@ function buildHubPage(built, allCount) {
   <strong>How to use this list</strong>
   Sort your thinking in this order: price decay first, then yield. A 40% yield with a decay flag is often worse than a 12% yield without one. Click any ticker for the full breakdown including how much capital it takes to reach your monthly income target.
 </div>
+
+<!-- EMAIL SIGNUP -->
+<div class="etf-signup" data-variant="featured" data-color="#30776C" data-accent="#1d4d46" data-source="monthlyetfs"></div>
+<script src="/email-signup.js" defer></script>
 
 <div class="tablewrap">
 <table class="data">
