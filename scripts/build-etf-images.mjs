@@ -102,14 +102,14 @@ fs.writeFileSync(manPath, JSON.stringify(manifest, null, 1));
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const BANNER = `<div class="banner">
     <a href="https://lsfunds.com/etfs/ovl" target="_blank" rel="sponsored noopener noreferrer">
-        <img src="https://raw.githubusercontent.com/benjiesiegel1414/topdividendetfs-site/main/Revised%20Top%20Dividend%20Tools%20OVL%20ad.png" alt="Liquid Strategies OVL ETF" loading="lazy">
+        <img src="https://raw.githubusercontent.com/benjiesiegel1414/topdividendetfs-site/main/OVL%20new%20display%20ad%202.png" alt="Liquid Strategies OVL ETF" loading="lazy">
     </a>
     <small style="color:#666; font-size:0.78em; font-weight:600;">Sponsored By</small>
     <small style="color:#666; font-size:0.78em; font-weight:400; text-align:center; max-width:100%; overflow-wrap:anywhere;">Read carefully before investing. Prospectus: <a href="https://lsfunds.com/hubfs/Regulatory/Prospectus.pdf?hsLang=en" target="_blank" rel="noopener noreferrer" style="color:#666 !important; font-family:inherit !important; font-size:inherit !important; font-weight:400 !important; text-shadow:none !important; background:none !important; letter-spacing:normal; text-decoration:underline !important;">https://lsfunds.com/hubfs/Regulatory/Prospectus.pdf?hsLang=en</a></small>
 </div>`;
 const BANNER2 = `<div class="banner">
     <a href="https://lsfunds.com/etfs/ovl" target="_blank" rel="sponsored noopener noreferrer">
-        <img src="https://raw.githubusercontent.com/benjiesiegel1414/topdividendetfs-site/main/Revised%20Top%20Dividend%20Tools%20OVL%20ad.png" alt="Liquid Strategies OVL ETF" loading="lazy">
+        <img src="https://raw.githubusercontent.com/benjiesiegel1414/topdividendetfs-site/main/OVL%20new%20display%20ad%202.png" alt="Liquid Strategies OVL ETF" loading="lazy">
     </a>
     <small style="color:#666; font-size:0.78em; font-weight:600;">Sponsored By</small>
     <small style="color:#666; font-size:0.78em; font-weight:400; text-align:center; max-width:100%; overflow-wrap:anywhere;">Read carefully before investing. Prospectus: <a href="https://lsfunds.com/hubfs/Regulatory/Prospectus.pdf?hsLang=en" target="_blank" rel="noopener noreferrer" style="color:#666 !important; font-family:inherit !important; font-size:inherit !important; font-weight:400 !important; text-shadow:none !important; background:none !important; letter-spacing:normal; text-decoration:underline !important;">https://lsfunds.com/hubfs/Regulatory/Prospectus.pdf?hsLang=en</a></small>
