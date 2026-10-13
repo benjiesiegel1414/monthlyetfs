@@ -131,6 +131,7 @@ const NETWORK_BAR = `
     <a href="https://topspaceetfs.com/" class="site-pill">🚀 TopSpaceETFs.com</a>
     <a href="https://etftotalreturns.com/" class="site-pill">📊 ETFTotalReturns.com</a>
     <a href="https://topdividendtools.com/" class="site-pill">🛠️ TopDividendTools.com</a>
+    <a href="https://topetfs.com/" class="site-pill">📰 TopETFs.com</a>
   </div>
 </div>`;
 
@@ -143,7 +144,7 @@ const FOOTER = `
     <a href="/blog.html">Blog</a> |
     <a href="/all-monthly-dividend-etfs.html">All ETFs</a> |
     <a href="https://topdividendetfs.com/" target="_blank" rel="noopener">Top Dividend ETFs</a><br><br>
-    <a href="https://topdividendtools.com/" target="_blank" rel="noopener">Top Dividend Tools 🛠️</a><br><br>
+    <a href="https://topdividendtools.com/" target="_blank" rel="noopener">Top Dividend Tools 🛠️</a> | <a href="https://topetfs.com/" target="_blank" rel="noopener">TopETFs</a><br><br>
     <a href="/advertise" target="_blank" rel="noopener">Advertise</a><br><br>
     Contact email: <a href="mailto:Business@TopDividendETFs.com">Business@TopDividendETFs.com</a>
   </p>
