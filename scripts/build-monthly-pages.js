@@ -581,6 +581,7 @@ function buildSitemap(built) {
     { loc: `${SITE}/qqqi-etf-dividend-guide-2026.html`, pri: '0.8', freq: 'monthly' },
     { loc: `${SITE}/spyi-etf-dividend-guide-2026.html`, pri: '0.8', freq: 'monthly' },
     { loc: `${SITE}/sgov-dividend-2026.html`, pri: '0.8', freq: 'monthly' },
+    { loc: `${SITE}/sgov-state-tax-exempt-2026.html`, pri: '0.8', freq: 'monthly' },
     { loc: `${SITE}/advertise`, pri: '0.5', freq: 'monthly' },
     { loc: `${SITE}/faq.html`, pri: '0.4', freq: 'yearly' },
     { loc: `${SITE}/terms.html`, pri: '0.3', freq: 'yearly' },
