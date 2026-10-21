@@ -571,6 +571,26 @@ ${FOOTER}
 // ─────────────────────────────────────────────────────────────
 // SITEMAP
 // ─────────────────────────────────────────────────────────────
+// Every page linked from blog.html (blog posts and the guides it lists), so new
+// posts land in the sitemap automatically without editing this file.
+function blogPostUrls(root) {
+  const p = path.join(root, 'blog.html');
+  if (!fs.existsSync(p)) return [];
+  const html = fs.readFileSync(p, 'utf8'), out = new Set();
+  for (const m of html.matchAll(/href=["']([^"'#?]+)["']/g)) {
+    let h = m[1];
+    if (/^https?:\/\//.test(h)) { if (!h.startsWith(SITE)) continue; h = h.slice(SITE.length); }
+    h = h.replace(/^\//, '');
+    if (!h || h === 'index.html' || h.startsWith('etf/')) continue;
+    const file = h.endsWith('.html') ? h : h + '.html';
+    const fp = path.join(root, file);
+    if (!fs.existsSync(fp)) continue;
+    if (/<meta[^>]+name=["']robots["'][^>]+noindex/i.test(fs.readFileSync(fp, 'utf8'))) continue;
+    out.add(SITE + '/' + h);
+  }
+  return [...out];
+}
+
 function buildSitemap(built) {
   const statics = [
     { loc: `${SITE}/`, pri: '1.0', freq: 'daily' },
@@ -587,6 +607,13 @@ function buildSitemap(built) {
     { loc: `${SITE}/terms.html`, pri: '0.3', freq: 'yearly' },
     { loc: `${SITE}/privacy.html`, pri: '0.3', freq: 'yearly' }
   ];
+
+  const have = new Set(statics.map(s => s.loc.replace(/\.html$/, '')));
+  for (const loc of blogPostUrls(OUT_DIR)) {
+    if (have.has(loc.replace(/\.html$/, ''))) continue;
+    have.add(loc.replace(/\.html$/, ''));
+    statics.push({ loc, pri: '0.7', freq: 'monthly' });
+  }
 
   const urls = [
     ...statics.map(s => `  <url><loc>${s.loc}</loc><lastmod>${TODAY}</lastmod><changefreq>${s.freq}</changefreq><priority>${s.pri}</priority></url>`),
