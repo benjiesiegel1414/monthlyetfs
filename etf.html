@@ -6,7 +6,7 @@
   <meta name="robots" content="index, follow">
 
   <title id="pageTitle">ETF Scorecard | MonthlyETFs.com</title>
-  <meta id="pageDescription" name="description" content="Full scorecard for this monthly dividend ETF — yield, AUM, price decay, and more, updated daily.">
+  <meta id="pageDescription" name="description" content="Full scorecard for this monthly dividend ETF: price, monthly dividend history, income calculator, yield, total return and price decay, updated daily.">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -149,7 +149,130 @@
       .hero-yield-value{font-size:2.3em;}
       .panel{padding:18px 16px;}
     }
+
+    .content{max-width:1020px}
+    .hero-card{position:relative;overflow:hidden;padding:28px 26px 24px}
+    .hero-card::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 85% -10%,rgba(255,215,106,.18),transparent 45%);pointer-events:none}
+    .hero-top{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+    .pill{font-size:.66em;font-weight:900;letter-spacing:.6px;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff}
+    .pill.gold{background:#ffd76a;color:#1f5148;border-color:#ffd76a}
+    .price-line{display:inline-flex;align-items:baseline;gap:10px;background:rgba(0,0,0,.18);border:1px solid rgba(255,255,255,.15);border-radius:999px;padding:7px 16px;margin:2px 0 18px}
+    .price-line .px{font-size:1.35em;font-weight:900;color:#fff}
+    .price-line .chg{font-weight:900;font-size:.85em}
+    .price-line .asof{font-size:.72em;color:rgba(255,255,255,.6)}
+    .chg.neg{color:#ffb4a8}.chg.pos{color:#9ff0c9}
+    .hero-yield-sub{color:rgba(255,255,255,.65);font-size:.75em;margin-top:6px}
+    .hero-sub-stats{gap:10px}
+    .hero-mini-stat{min-width:120px}
+    .hero-mini-value.pos{color:#8ff0c4}
+    .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;width:100%;margin-bottom:16px}
+    .stat{background:#fff;border:1px solid #e2e2e2;border-radius:10px;padding:13px 12px;text-align:center;box-shadow:0 3px 12px rgba(0,0,0,.05)}
+    .stat em{display:block;font-style:normal;font-size:.62em;text-transform:uppercase;letter-spacing:1px;color:#888;font-weight:900}
+    .stat b{display:block;font-size:1.2em;color:var(--primary);margin-top:4px}
+    .stat small{display:block;font-size:.68em;color:#999;margin-top:2px}
+    .stat b.neg{color:var(--red)}.stat b.pos{color:var(--green)}
+    .panel-title{text-align:left;display:flex;align-items:center;gap:8px}
+    .panel-sub{font-size:.82em;color:#777;margin:-8px 0 14px}
+    .mini-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
+    .mini-grid div{background:var(--light);border-radius:9px;padding:10px 12px}
+    .mini-grid em{display:block;font-style:normal;font-size:.6em;text-transform:uppercase;letter-spacing:.8px;color:#888;font-weight:900}
+    .mini-grid b{font-size:1.05em;color:var(--primary)}
+    .mini-grid small{display:block;font-size:.66em;color:#999}
+    .legend{display:flex;gap:16px;flex-wrap:wrap;font-size:.72em;color:#666;margin-top:6px}
+    .legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+    .cal{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+    .cal-m{border:1px solid #e3eaea;border-radius:9px;padding:9px 6px;text-align:center;background:linear-gradient(180deg,#fff,#f6f9f9)}
+    .cal-m em{display:block;font-style:normal;font-size:.62em;font-weight:900;color:#888;text-transform:uppercase}
+    .cal-m b{display:block;color:var(--primary);font-size:.98em;margin:3px 0 1px}
+    .cal-m small{font-size:.62em;color:#999}
+    .cal-note{font-size:.8em;color:#555;background:#fff8e1;border:1px solid #f0d090;border-radius:8px;padding:9px 12px;margin-top:12px}
+    .calc{display:grid;grid-template-columns:1.1fr 1fr;gap:20px;align-items:center}
+    .calc label{font-weight:900;color:var(--primary);font-size:.78em;text-transform:uppercase;letter-spacing:.5px}
+    .amt-big{font-size:2.1em;font-weight:900;color:var(--primary);line-height:1.1}
+    .calc input[type=range]{width:100%;accent-color:#30776C;margin:10px 0 2px}
+    .shares{font-size:.74em;color:#999}
+    .calc-out{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+    .calc-out div{border-radius:10px;padding:12px 6px;text-align:center;background:linear-gradient(155deg,#fff8e1,#fff);border:2px solid #f0d090}
+    .calc-out em{display:block;font-style:normal;font-size:.6em;color:#888;font-weight:900;text-transform:uppercase}
+    .calc-out b{font-size:1.25em;color:#8a6100}
+    .goal{margin-top:12px;font-size:.84em;color:#444;background:var(--light);border-radius:8px;padding:10px 12px}
+    .goal b{color:var(--primary)}
+    .fine{font-size:.7em;color:#999;margin:10px 0 0}
+    .range{margin-top:4px}
+    .range-track{position:relative;height:10px;border-radius:6px;background:linear-gradient(90deg,#f3b7b1,#f0d090,#a9e3bc)}
+    .range-dot{position:absolute;top:50%;width:18px;height:18px;border-radius:50%;background:var(--primary);border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.3);transform:translate(-50%,-50%)}
+    .range-lab{display:flex;justify-content:space-between;font-size:.72em;color:#777;margin-top:6px}
+    .two{display:grid;grid-template-columns:1fr 1fr;gap:16px;width:100%;margin-bottom:16px}
+    .two .panel{margin:0}
+    .pay-table{width:100%;border-collapse:collapse;font-size:.86em}
+    .pay-table th{text-align:left;font-size:.66em;text-transform:uppercase;letter-spacing:.8px;color:#888;padding:8px;border-bottom:2px solid #eee}
+    .pay-table td{padding:9px 8px;border-bottom:1px solid #f0f0f0}
+    .pay-table td.amt{font-weight:900;color:var(--primary)}
+    .up{color:var(--green);font-weight:900}.down{color:var(--red);font-weight:900}.flat{color:#aaa;font-weight:900}
+    .rank-row{display:flex;align-items:center;gap:16px;margin-top:6px}
+    .rank-badge{flex:0 0 auto;width:86px;height:86px;border-radius:50%;background:conic-gradient(#30776C var(--pct,50%),#e7eded 0);display:flex;align-items:center;justify-content:center}
+    .rank-badge div{width:66px;height:66px;border-radius:50%;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:900;color:var(--primary);font-size:1.05em;line-height:1}
+    .rank-badge small{font-size:.5em;color:#888;margin-top:3px}
+    .lock{display:inline-flex;align-items:center;gap:5px;background:#fff8e1;border:1px solid #f0d090;color:#8a6100;border-radius:999px;padding:2px 10px;font-size:.8em;font-weight:900;text-decoration:none}
+    .detail-grid{display:grid;grid-template-columns:1fr 1fr;column-gap:30px}
+    .pro-cta{display:flex;justify-content:space-between;align-items:center;gap:16px;width:100%;margin-bottom:16px;background:linear-gradient(135deg,#1f5148,#30776C);color:#fff;border-radius:12px;padding:20px 22px;box-shadow:0 6px 18px rgba(31,81,72,.3)}
+    .pro-cta strong{display:block;color:#ffd76a;font-size:1.02em;margin-bottom:4px}
+    .pro-cta p{margin:0;font-size:.82em;color:rgba(255,255,255,.85)}
+    .pro-cta a{background:#ffd76a;color:#1f5148;font-weight:900;text-decoration:none;padding:11px 18px;border-radius:8px;white-space:nowrap}
+    .similar-grid{grid-template-columns:repeat(4,1fr)}
+    .sim-card{display:block;text-decoration:none;background:#fff;border:1px solid #dfe6e6;border-radius:10px;padding:12px 13px;transition:all .15s}
+    .sim-card:hover{border-color:var(--primary);transform:translateY(-3px);box-shadow:0 6px 16px rgba(0,0,0,.1)}
+    .sim-top{display:flex;justify-content:space-between;align-items:center}
+    .sim-symbol{font-weight:900;color:var(--primary);font-size:1.08em}
+    .dec{font-size:.56em;font-weight:900;padding:2px 6px;border-radius:4px;text-transform:uppercase}
+    .dec.no{background:#e3f6ec;color:#2e8b57}.dec.yes{background:#fdecea;color:#c62828}
+    .sim-name{font-size:.68em;color:#888;line-height:1.3;min-height:2.6em;margin:4px 0 8px}
+    .sim-stats{display:flex;justify-content:space-between;gap:4px}
+    .sim-stats em{display:block;font-style:normal;font-size:.52em;color:#999;font-weight:900;text-transform:uppercase}
+    .sim-stats b{font-size:.84em}
+    .gold{color:#a77a0a}.pos{color:#2e8b57}.neg{color:#c62828}
+    .faq details{border-bottom:1px solid #eee;padding:2px 0}
+    .faq summary{cursor:pointer;font-weight:900;color:var(--primary);padding:10px 0;font-size:.92em}
+    .faq p{margin:0 0 12px;color:#555;font-size:.88em;line-height:1.6}
+    @media(max-width:760px){.price-line{flex-wrap:wrap;justify-content:center;border-radius:14px;gap:4px 10px}.price-line .asof{width:100%;text-align:center}.stat-grid,.mini-grid{grid-template-columns:1fr 1fr}.cal{grid-template-columns:repeat(3,1fr)}.calc,.two,.detail-grid{grid-template-columns:1fr}.similar-grid{grid-template-columns:1fr 1fr}.pro-cta{flex-direction:column;align-items:flex-start}.pay-table th:nth-child(3),.pay-table td:nth-child(3){display:none}}
+
+    .js-hide{display:none !important}
+    .chart-box{position:relative}
+    .chart-tip{position:absolute;pointer-events:none;background:#1f5148;color:#fff;font-size:.72em;font-weight:700;padding:6px 10px;border-radius:6px;white-space:nowrap;transform:translate(-50%,-110%);display:none;z-index:5}
+    .pay-table tr.more{display:none}.pay-table.open tr.more{display:table-row}
+    .hero-mini-value.decay-yes{color:#ff9f8f}
   </style>
+<!--mx:css--><style>
+.mx-ovl{width:92%;max-width:1000px;margin:16px auto;display:flex;flex-direction:column;align-items:center;gap:6px;box-sizing:border-box}
+.mx-ovl a img{display:block;max-width:100%;height:auto;transition:transform .3s ease}
+.mx-ovl a:hover img{transform:scale(1.02)}
+.mx-ovl small{color:#666;font-size:.72rem;text-align:center;max-width:100%;overflow-wrap:anywhere;font-family:'Lato',Arial,sans-serif;line-height:1.4}
+.mx-ovl .mx-ovl-lab{font-weight:700}
+.mx-ovl .mx-ovl-pro a{color:#666;text-decoration:underline;font-weight:400}
+.mx-foot{width:94%;max-width:1100px;margin:28px auto 22px;background:linear-gradient(150deg,#1f5148 0%,#30776C 70%,#3a8a7d 100%);color:#fff;border-radius:16px;box-shadow:0 10px 30px rgba(31,81,72,.28);font-family:'Lato',Arial,sans-serif;text-align:left;box-sizing:border-box;overflow:hidden;position:relative;font-size:16px;line-height:1.5}
+.mx-foot::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 90% -20%,rgba(255,215,106,.16),transparent 45%);pointer-events:none}
+.mx-foot *{box-sizing:border-box}
+.mx-foot-in{position:relative;display:grid;grid-template-columns:1.15fr 1fr 1.75fr .95fr;gap:26px;padding:30px 30px 22px}
+.mx-foot h4{margin:0 0 12px;font-size:.72rem;letter-spacing:1.4px;text-transform:uppercase;color:#ffd76a;font-weight:900}
+.mx-foot a{color:rgba(255,255,255,.88);text-decoration:none;font-weight:700}
+.mx-foot a:hover{color:#ffd76a;text-decoration:underline}
+.mx-foot ul{list-style:none;margin:0;padding:0}
+.mx-foot li{margin:0 0 8px;font-size:.86rem}
+.mx-foot .mx-logo{display:inline-block;font-size:1.25rem;font-weight:900;color:#fff;margin-bottom:8px}
+.mx-foot .mx-logo:hover{text-decoration:none;color:#fff}
+.mx-foot p.mx-tag{margin:0 0 14px;font-size:.85rem;color:rgba(255,255,255,.75)}
+.mx-foot .mx-btns{display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+.mx-foot .mx-btn{display:inline-block;padding:8px 14px;border-radius:8px;font-size:.8rem;font-weight:900}
+.mx-foot .mx-btn.gold{background:#ffd76a;color:#1f5148}
+.mx-foot .mx-btn.ghost{border:1px solid rgba(255,255,255,.45);color:#fff}
+.mx-foot .mx-btn:hover{text-decoration:none;transform:translateY(-1px)}
+.mx-foot .mx-net{display:grid;grid-template-columns:1fr 1fr;column-gap:14px}
+.mx-foot .mx-net .here{color:#ffd76a}
+.mx-foot .mx-net a{white-space:nowrap;font-size:.82rem}
+.mx-foot .mx-bottom{position:relative;border-top:1px solid rgba(255,255,255,.18);padding:14px 30px 18px;font-size:.74rem;color:rgba(255,255,255,.65);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+@media(max-width:900px){.mx-foot-in{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.mx-foot-in{grid-template-columns:1fr;padding:24px 20px 16px;gap:22px}.mx-foot .mx-bottom{padding:14px 20px 18px}}
+</style><!--/mx:css-->
 </head>
 <body>
   <header onclick="location.href='/'">
@@ -169,6 +292,13 @@
       <a href="https://topetfs.com/" class="site-pill" title="ETF news, research and live data">📰 TopETFs.com</a>
     </div>
   </div>
+<!--mx:ovl-top-->
+<div class="mx-ovl">
+  <a href="https://lsfunds.com/etfs/ovl" target="_blank" rel="sponsored noopener noreferrer"><img src="https://raw.githubusercontent.com/benjiesiegel1414/topdividendetfs-site/main/OVL%20new%20display%20ad%202.png" alt="Liquid Strategies OVL ETF" loading="eager"></a>
+  <small class="mx-ovl-lab">Sponsored By</small>
+  <small class="mx-ovl-pro">Read carefully before investing. Prospectus: <a href="https://lsfunds.com/hubfs/Regulatory/Prospectus.pdf?hsLang=en" target="_blank" rel="noopener noreferrer">https://lsfunds.com/hubfs/Regulatory/Prospectus.pdf?hsLang=en</a></small>
+</div>
+<!--/mx:ovl-top-->
 
   <div class="content">
     <a href="/" class="back-link">← Back to All Rankings</a>
@@ -189,75 +319,187 @@
       <div class="nav-etf-row" id="navEtfRow"></div>
 
       <div class="hero-card">
+        <div class="hero-top" id="heroPills"></div>
         <h1 class="hero-ticker" id="heroTicker">—</h1>
-        <p class="hero-name" id="heroName">—</p>
+        <p class="hero-name" id="heroName" style="margin-bottom:12px">—</p>
+        <div id="priceWrap" class="js-hide"><div class="price-line"><span class="px" id="pxVal"></span><span class="chg" id="pxChg"></span><span class="asof" id="pxAsof"></span></div></div>
         <div class="hero-yield-label">Dividend Yield</div>
         <div class="hero-yield-value" id="heroYield">—</div>
-        <div class="hero-sub-stats">
-          <div class="hero-mini-stat">
-            <div class="hero-mini-label">AUM</div>
-            <div class="hero-mini-value" id="heroAUM">—</div>
-          </div>
-          <div class="hero-mini-stat">
-            <div class="hero-mini-label">Price Decay</div>
-            <div class="hero-mini-value" id="heroDecay">—</div>
-          </div>
+        <div class="hero-yield-sub js-hide" id="heroYieldSub"></div>
+        <div class="hero-sub-stats" id="heroStats"></div>
+      </div>
+
+      <div class="stat-grid js-hide" id="statGrid"></div>
+
+      <div class="panel js-hide" id="divPanel">
+        <div class="panel-title" id="divTitle"></div>
+        <p class="panel-sub" id="divSub"></p>
+        <div class="chart-box" id="divChart"></div>
+        <div class="legend" id="divLegend"></div>
+        <div class="mini-grid" id="divMini"></div>
+      </div>
+
+      <div class="panel js-hide" id="calPanel">
+        <div class="panel-title">&#128198; Dividend Calendar</div>
+        <p class="panel-sub" id="calSub"></p>
+        <div class="cal" id="calGrid"></div>
+        <div class="cal-note" id="calNote"></div>
+      </div>
+
+      <div class="panel js-hide" id="calcPanel">
+        <div class="panel-title" id="calcTitle"></div>
+        <p class="panel-sub">Based on the latest payout and the latest closing price.</p>
+        <div class="calc">
+          <div><label for="amt">Amount invested</label><div class="amt-big" id="amtOut">$10,000</div>
+            <input type="range" id="amt" min="1000" max="500000" step="1000" value="10000" aria-label="Amount invested"><div class="shares" id="shares"></div></div>
+          <div class="calc-out"><div><em>Per month</em><b id="pm"></b></div><div><em>Per year</em><b id="py"></b></div><div><em>Per day</em><b id="pdy"></b></div></div>
+        </div>
+        <div class="goal" id="goal"></div>
+        <p class="fine">Payouts change every month and are not guaranteed. Estimate is before taxes and assumes no reinvestment.</p>
+      </div>
+
+      <div class="panel js-hide" id="growthPanel">
+        <div class="panel-title">&#128200; Growth of $10,000</div>
+        <p class="panel-sub" id="growthSub"></p>
+        <div class="chart-box" id="growthChart"></div>
+      </div>
+
+      <div class="two js-hide" id="trendRow">
+        <div class="panel"><div class="panel-title">Yield Trend</div><p class="panel-sub" id="yLead"></p><div class="chart-box" id="yChart"></div></div>
+        <div class="panel"><div class="panel-title">Total Return Trend</div><p class="panel-sub" id="tLead"></p><div class="chart-box" id="tChart"></div></div>
+      </div>
+
+      <div class="two" id="rangeRow">
+        <div class="panel js-hide" id="rangePanel">
+          <div class="panel-title">&#128207; 52-Week Price Range</div>
+          <div class="range"><div class="range-track"><span class="range-dot" id="rangeDot"></span></div>
+          <div class="range-lab"><span id="rangeLo"></span><span id="rangeNow" style="font-weight:900;color:var(--primary)"></span><span id="rangeHi"></span></div></div>
+          <p class="panel-sub" style="margin:12px 0 0" id="rangeNote"></p>
+        </div>
+        <div class="panel" id="fieldPanel">
+          <div class="panel-title">&#127942; Yield vs. The Field</div>
+          <div class="rank-row"><div class="rank-badge" id="rankBadge"><div><span id="rankNum"></span><small id="rankOf"></small></div></div>
+          <div style="font-size:.86em;color:#555;line-height:1.6" id="fieldNote"></div></div>
         </div>
       </div>
 
-      <div class="panel">
-        <div class="panel-title">Yield vs. The Field</div>
-        <div class="compare-item">
-          <div class="compare-label"><span>This ETF</span><b id="compareThisLabel">—</b></div>
-          <div class="compare-track"><div class="compare-fill this-etf" id="compareThisBar"><span id="compareThisText"></span></div></div>
-        </div>
-        <div class="compare-item">
-          <div class="compare-label"><span>Average of all tracked ETFs</span><b id="compareAvgLabel">—</b></div>
-          <div class="compare-track"><div class="compare-fill average" id="compareAvgBar"><span id="compareAvgText"></span></div></div>
-        </div>
-        <div class="compare-note" id="compareNote"></div>
+      <div class="panel js-hide" id="payPanel">
+        <div class="panel-title">&#129534; Payout Table</div>
+        <table class="pay-table" id="ptable"><thead><tr><th>Ex-Date</th><th>Per Share</th><th>Annualized</th><th>Rate at Today's Price</th><th>vs Prior Month</th></tr></thead><tbody id="ptbody"></tbody></table>
+        <button class="cta-btn ghost" id="tbtn" type="button" style="margin-top:12px;cursor:pointer"></button>
       </div>
 
       <div class="panel">
         <div class="panel-title">Fund Details</div>
-        <div class="detail-row"><span class="label">Ticker Symbol</span><span class="value" id="detailSymbol">—</span></div>
-        <div class="detail-row"><span class="label">ETF Name</span><span class="value" id="detailName">—</span></div>
-        <div class="detail-row"><span class="label">Dividend Yield</span><span class="value" id="detailYield">—</span></div>
-        <div class="detail-row"><span class="label">AUM</span><span class="value" id="detailAUM">—</span></div>
-        <div class="detail-row"><span class="label">Price Decay</span><span class="value" id="detailDecay">—</span></div>
+        <div class="detail-grid">
+          <div id="detailsL"></div>
+          <div id="detailsR"></div>
+        </div>
       </div>
 
-      <div class="panel">
-        <div class="panel-title">Similar ETFs You Might Like</div>
-        <div class="similar-grid" id="similarGrid"></div>
+      <div class="pro-cta"><div><strong id="proTitle">&#128274; See this ETF's rating and tax grade</strong><p>TopDividendETFsPRO shows ratings, tax grades, live yields and price decay for 190+ income ETFs, plus watchlists you can download.</p></div><a href="https://topdividendetfspro.com/?utm_source=monthlyetfs&amp;utm_medium=etf_page_cta&amp;utm_campaign=etf_page" target="_blank" rel="noopener" id="proBtn">Unlock PRO &rarr;</a></div>
+
+      <div class="panel js-hide" id="samePanel">
+        <div class="panel-title" id="sameTitle"></div>
+        <div class="similar-grid" id="sameGrid"></div>
+      </div>
+      <div class="panel" id="nearPanel">
+        <div class="panel-title" id="nearTitle">Similar Yield From Other Issuers</div>
+        <div class="similar-grid" id="nearGrid"></div>
+      </div>
+
+      <div class="panel faq" id="faqPanel">
+        <div class="panel-title" id="faqTitle"></div>
+        <div id="faqBody"></div>
       </div>
 
       <div class="cta-row">
-        <a href="/" class="cta-btn primary">← Compare All Monthly ETFs</a>
-        <a href="/blog.html" class="cta-btn ghost">Read the Blog →</a>
+        <a href="/" class="cta-btn primary">&larr; Compare All Monthly ETFs</a>
+        <a href="/blog.html" class="cta-btn ghost">Read the Blog &rarr;</a>
       </div>
 
       <p class="disclaimer">
-        Disclaimer: MonthlyETFs.com is for educational purposes only. ETF data and dividend information may be inaccurate or outdated. Investing carries risk, including loss of principal. We are not financial advisors & this is NOT Financial Advice. Always consult a licensed financial advisor before making investment decisions.
+        Disclaimer: MonthlyETFs.com is for educational purposes only. ETF data and dividend information may be inaccurate or outdated. Investing carries risk, including loss of principal. We are not financial advisors &amp; this is NOT Financial Advice. Always consult a licensed financial advisor before making investment decisions.
       </p>
 
     </div>
   </div>
 
-  <footer class="footer">
-    <p>
-      <a href="terms.html">Terms of Use</a> |
-      <a href="privacy.html">Privacy Policy</a> |
-      <a href="faq.html">FAQ</a> |
-      <a href="/blog.html">Blog</a> |
-      <a href="https://topdividendetfs.com/" target="_blank" rel="noopener">Top Dividend ETFs</a>
-    </p>
-  </footer>
+  <!--mx:ovl-bottom-->
+<div class="mx-ovl">
+  <a href="https://lsfunds.com/etfs/ovl" target="_blank" rel="sponsored noopener noreferrer"><img src="https://raw.githubusercontent.com/benjiesiegel1414/topdividendetfs-site/main/OVL%20new%20display%20ad%202.png" alt="Liquid Strategies OVL ETF" loading="lazy"></a>
+  <small class="mx-ovl-lab">Sponsored By</small>
+  <small class="mx-ovl-pro">Read carefully before investing. Prospectus: <a href="https://lsfunds.com/hubfs/Regulatory/Prospectus.pdf?hsLang=en" target="_blank" rel="noopener noreferrer">https://lsfunds.com/hubfs/Regulatory/Prospectus.pdf?hsLang=en</a></small>
+</div>
+<!--/mx:ovl-bottom-->
+<!--mx:footer-->
+<footer class="mx-foot">
+  <div class="mx-foot-in">
+    <div>
+      <a class="mx-logo" href="/">🗓️ MonthlyETFs.com</a>
+      <p class="mx-tag">The top monthly dividend ETFs, ranked and updated daily. 100% free.</p>
+      <div class="mx-btns">
+        <a class="mx-btn gold" href="https://topdividendetfspro.com/?utm_source=monthlyetfs&amp;utm_medium=footer&amp;utm_campaign=pro" target="_blank" rel="noopener">🏆 Go PRO</a>
+        <a class="mx-btn ghost" href="https://dividendempire2000.gumroad.com/l/DividendTracker?layout=profile" target="_blank" rel="noopener">Best Monthly Dividend Tracker</a>
+      </div>
+    </div>
+    <div>
+      <h4>MonthlyETFs</h4>
+      <ul><li><a href="/all-monthly-dividend-etfs.html">All Monthly Dividend ETFs</a></li><li><a href="/top-10-highest-yield-monthly-etfs-2026.html">Top 10 Highest Yield</a></li><li><a href="/monthly-dividend-etf-calendar-2026.html">Monthly Dividend Calendar</a></li><li><a href="/best-etfs-for-monthly-income-2026.html">Best ETFs for Monthly Income</a></li><li><a href="/etf-images/">ETF Ticker Images</a></li><li><a href="/blog.html">Blog</a></li><li><a href="/methodology.html">Methodology</a></li><li><a href="/faq.html">FAQ</a></li></ul>
+    </div>
+    <div>
+      <h4>Our Network</h4>
+      <ul class="mx-net"><li><a href="https://topdividendetfs.com/" target="_blank" rel="noopener">💵 TopDividendETFs</a></li><li><a href="https://topdividendetfspro.com/?utm_source=monthlyetfs&utm_medium=footer&utm_campaign=network" target="_blank" rel="noopener">🏆 TopDividendETFsPRO</a></li><li><a href="https://weeklyetfs.com/" target="_blank" rel="noopener">📅 WeeklyETFs</a></li><li><a href="https://monthlyetfs.com/" class="here">🗓️ MonthlyETFs</a></li><li><a href="https://growthetfs.com/" target="_blank" rel="noopener">📈 GrowthETFs</a></li><li><a href="https://etftotalreturns.com/" target="_blank" rel="noopener">📊 ETFTotalReturns</a></li><li><a href="https://topspaceetfs.com/" target="_blank" rel="noopener">🚀 TopSpaceETFs</a></li><li><a href="https://robotetfs.com/" target="_blank" rel="noopener">🤖 RobotETFs</a></li><li><a href="https://photonicsetfs.com/" target="_blank" rel="noopener">🔦 PhotonicsETFs</a></li><li><a href="https://topdividendtools.com/" target="_blank" rel="noopener">🛠️ TopDividendTools</a></li><li><a href="https://dividendprojection.com/" target="_blank" rel="noopener">🧮 DividendProjection</a></li><li><a href="https://topetfs.com/" target="_blank" rel="noopener">📰 TopETFs</a></li></ul>
+    </div>
+    <div>
+      <h4>Company</h4>
+      <ul>
+        <li><a href="/advertise">Advertise With Us</a></li>
+        <li><a href="https://x.com/MonthlyETFs" target="_blank" rel="noopener">Follow @MonthlyETFs</a></li>
+        <li><a href="/terms.html">Terms of Use</a></li>
+        <li><a href="/privacy.html">Privacy Policy</a></li>
+        <li><a href="mailto:Business@TopDividendETFs.com">Business@TopDividendETFs.com</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="mx-bottom"><span>© 2026 Dividend Empire LLC. All rights reserved.</span><span>Not financial advice. Data may be delayed or inaccurate.</span></div>
+</footer>
+<!--/mx:footer-->
 
 <script>
 const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSscSF78pEGxi9Lcx2YHZjHHAkyy75b5Icb6A8nK2aehtmEq-xgpFPA7sQdkmZYKjkUdrtPL1SdMm62/pub?output=csv';
+// Extra data piggybacks on the PRO Terminal feeds (refreshed automatically, nothing to maintain here)
+const PRO_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTxCiod-Cwry7E6k9Un9dgrM_ANymC36_IO_wLyNj-YDo2KI7mp_1ZzyNBnBGZOxT48QPM8TCwtsmA4/pub?gid=0&single=true&output=csv';
+const PRO_DATA = 'https://topdividendetfspro.com/data/';
 
 function getQueryParam(name) { return new URLSearchParams(window.location.search).get(name); }
+function parseCSV(text) {
+  const rows = []; let row = [], f = '', q = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (q) { if (c === '"') { if (text[i + 1] === '"') { f += '"'; i++; } else q = false; } else f += c; }
+    else if (c === '"') q = true;
+    else if (c === ',') { row.push(f.trim()); f = ''; }
+    else if (c === '\n' || c === '\r') { if (c === '\r' && text[i + 1] === '\n') i++; row.push(f.trim()); rows.push(row); row = []; f = ''; }
+    else f += c;
+  }
+  if (f || row.length) { row.push(f.trim()); rows.push(row); }
+  return rows;
+}
+function getJSON(url) { return fetch(url).then(r => r.ok ? r.json() : null).catch(() => null); }
+function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
+function num(s) { const n = parseFloat(String(s || '').replace(/[^0-9.\-]/g, '')); return isNaN(n) ? null : n; }
+const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+function pd(s) { const p = s.split('-'); return new Date(+p[0], +p[1] - 1, +p[2]); }
+function fmtd(s) { const d = pd(s); return MON[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear(); }
+function fmon(s) { const d = pd(s); return MON[d.getMonth()] + ' ' + d.getFullYear(); }
+function money(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+function money2(n) { return '$' + n.toLocaleString('en-US', { minimumFractionDigits: n < 100 ? 2 : 0, maximumFractionDigits: n < 100 ? 2 : 0 }); }
+function ord(k) { return k + ((k % 100 >= 11 && k % 100 <= 13) ? 'th' : ({ 1: 'st', 2: 'nd', 3: 'rd' }[k % 10] || 'th')); }
+function aumFmt(s) { if (!s || s === '—') return null; const n = num(s); if (n == null) return s; if (/B/i.test(s)) return '$' + n + 'B'; return n >= 1000 ? '$' + (n / 1000).toFixed(1) + 'B' : '$' + Math.round(n) + 'M'; }
+function $(id) { return document.getElementById(id); }
+function show(id) { const el = $(id); if (el) el.classList.remove('js-hide'); }
+function median(a) { const s = a.slice().sort((x, y) => x - y); return s.length ? s[Math.floor(s.length / 2)] : 0; }
 
 function trackScorecardPageview(symbol, name) {
   const path = '/etf/' + encodeURIComponent(symbol);
@@ -266,123 +508,294 @@ function trackScorecardPageview(symbol, name) {
   gtag('event', 'page_view', { page_path: path, page_title: title, page_location: window.location.origin + path });
 }
 
+// hover / tap tooltips for the SVG charts (any element with data-tip)
+function wireTips(box) {
+  const tip = document.createElement('div'); tip.className = 'chart-tip'; box.appendChild(tip);
+  function on(e) {
+    const t = e.target.closest('[data-tip]'); if (!t) { tip.style.display = 'none'; return; }
+    const b = box.getBoundingClientRect(), r = t.getBoundingClientRect();
+    tip.textContent = t.getAttribute('data-tip'); tip.style.display = 'block';
+    tip.style.left = Math.min(Math.max(r.left + r.width / 2 - b.left, 80), b.width - 80) + 'px';
+    tip.style.top = (r.top - b.top) + 'px';
+  }
+  box.addEventListener('mousemove', on); box.addEventListener('click', on);
+  box.addEventListener('mouseleave', function () { tip.style.display = 'none'; });
+}
+function niceStep(max) { const raw = max / 3, p = Math.pow(10, Math.floor(Math.log10(raw))), n = raw / p; return (n <= 1 ? 1 : n <= 2 ? 2 : n <= 2.5 ? 2.5 : n <= 5 ? 5 : 10) * p; }
+
+// line chart: pts = [[date, value]], fmt formats axis labels and tooltips
+function lineChart(boxId, pts, color, fmt) {
+  const box = $(boxId); const W = Math.min(Math.max(Math.round(box.clientWidth) || 700, 280), 1000), H = W < 520 ? 190 : 220, L = W < 520 ? 46 : 58, R = 14, T = 16, B = 26;
+  const vals = pts.map(p => p[1]); let lo = Math.min.apply(null, vals), hi = Math.max.apply(null, vals);
+  if (hi - lo < Math.abs(hi) * 0.06) { const mid = (hi + lo) / 2, half = Math.max(Math.abs(mid) * 0.03, 1); lo = mid - half; hi = mid + half; }
+  const pad = (hi - lo) * 0.12; lo -= pad; hi += pad;
+  const X = i => L + i * (W - L - R) / (vals.length - 1), Y = v => T + (hi - v) / (hi - lo) * (H - T - B);
+  const line = vals.map((v, i) => X(i).toFixed(1) + ',' + Y(v).toFixed(1)).join(' ');
+  let g = '';
+  [0.5, 1.5, 2.5].forEach(k => { const v = lo + (hi - lo) * k / 3; g += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + Y(v).toFixed(1) + '" y2="' + Y(v).toFixed(1) + '" stroke="#e7eded"/><text x="' + (L - 6) + '" y="' + (Y(v) + 4).toFixed(1) + '" text-anchor="end" font-size="10.5" fill="#999">' + fmt(v, true) + '</text>'; });
+  let hits = ''; const hw = (W - L - R) / Math.max(vals.length - 1, 1);
+  pts.forEach((p, i) => { hits += '<rect data-tip="' + fmtd(p[0]) + ': ' + fmt(p[1]) + '" x="' + (X(i) - hw / 2).toFixed(1) + '" y="' + T + '" width="' + hw.toFixed(1) + '" height="' + (H - T - B) + '" fill="transparent"/>'; });
+  box.innerHTML = '<svg viewBox="0 0 ' + W + ' ' + H + '" style="width:100%;height:auto;display:block">' + g +
+    '<polygon points="' + X(0).toFixed(1) + ',' + (H - B) + ' ' + line + ' ' + X(vals.length - 1).toFixed(1) + ',' + (H - B) + '" fill="' + color + '" opacity=".10"/>' +
+    '<polyline points="' + line + '" fill="none" stroke="' + color + '" stroke-width="2.6" stroke-linejoin="round"/>' +
+    '<circle cx="' + X(vals.length - 1).toFixed(1) + '" cy="' + Y(vals[vals.length - 1]).toFixed(1) + '" r="5" fill="' + color + '" stroke="#fff" stroke-width="2"/>' +
+    '<text x="' + L + '" y="' + (H - 8) + '" font-size="10.5" fill="#999">' + fmon(pts[0][0]) + '</text><text x="' + (W - R) + '" y="' + (H - 8) + '" text-anchor="end" font-size="10.5" fill="#999">' + fmon(pts[pts.length - 1][0]) + '</text>' + hits + '</svg>';
+  wireTips(box);
+}
+
+function simCard(p) {
+  const t = num(p.ret), dec = (p.decay || '').toUpperCase();
+  return '<a class="sim-card" href="etf.html?symbol=' + encodeURIComponent(p.symbol) + '"><div class="sim-top"><span class="sim-symbol">' + esc(p.symbol) + '</span>' +
+    (dec ? '<span class="dec ' + (dec === 'NO' ? 'no' : 'yes') + '">' + (dec === 'NO' ? 'No decay' : 'Price decay') + '</span>' : '') + '</div>' +
+    '<div class="sim-name">' + esc(p.name) + '</div><div class="sim-stats"><span><em>Yield</em><b class="gold">' + esc(p.yieldStr) + '</b></span>' +
+    (p.ret ? '<span><em>Total Return</em><b class="' + (t >= 0 ? 'pos' : 'neg') + '">' + esc(p.ret) + '</b></span>' : '') +
+    (p.er ? '<span><em>Exp. Ratio</em><b>' + esc(p.er) + '</b></span>' : '<span><em>Fund Size</em><b>' + esc(p.aum) + '</b></span>') + '</div></a>';
+}
+
 async function loadScorecard() {
   const symbol = (getQueryParam('symbol') || '').trim().toUpperCase();
-  const loadingEl = document.getElementById('loadingState');
-  const errorEl = document.getElementById('errorState');
-  const cardEl = document.getElementById('scorecard');
-
+  const loadingEl = $('loadingState'), errorEl = $('errorState'), cardEl = $('scorecard');
   if (!symbol) { loadingEl.style.display = 'none'; errorEl.style.display = 'block'; return; }
+
+  // start every data load at once
+  const proP = fetch(PRO_CSV).then(r => r.ok ? r.text() : '').catch(() => '');
+  const retP = getJSON(PRO_DATA + 'returns.json');
+  const divP = getJSON(PRO_DATA + 'div/' + encodeURIComponent(symbol) + '.json');
 
   try {
     const res = await fetch(CSV_URL + '&t=' + Date.now());
     if (!res.ok) throw new Error('HTTP ' + res.status);
-    const csv = await res.text();
-    const lines = csv.split('\n');
-
-    let match = null;
-    const allRows = [];
-
+    const lines = parseCSV(await res.text());
+    let match = null; const allRows = [];
     for (let i = 1; i < lines.length; i++) {
-      const cols = lines[i].split(',').map(c => c.replace(/^"|"$/g, '').trim());
-      if (!cols[0]) continue;
-      const rowObj = {
-        symbol: cols[0], name: cols[1] || cols[0], yieldStr: cols[2] || '—',
-        aum: cols[3] || '—', decay: cols[4] || '—',
-        yieldNum: parseFloat((cols[2] || '').replace('%','')) || 0
-      };
-      allRows.push(rowObj);
-      if (cols[0].toUpperCase() === symbol) match = rowObj;
+      const cols = lines[i]; if (!cols[0]) continue;
+      const row = { symbol: cols[0], name: cols[1] || cols[0], yieldStr: cols[2] || '—', aum: cols[3] || '—', decay: cols[4] || '—', yieldNum: num(cols[2]) || 0 };
+      allRows.push(row);
+      if (cols[0].toUpperCase() === symbol && !match) match = row;
     }
-
     if (!match) { loadingEl.style.display = 'none'; errorEl.style.display = 'block'; return; }
 
-    const sym = match.symbol, name = match.name, yieldStr = match.yieldStr, aum = match.aum, decay = match.decay;
-    const yieldNum = match.yieldNum;
-
-    document.getElementById('heroTicker').textContent = sym;
-    document.getElementById('heroName').textContent = name;
-    document.getElementById('heroYield').textContent = yieldStr.includes('%') ? yieldStr : yieldStr + '%';
-    document.getElementById('heroAUM').textContent = aum;
-    const heroDecayEl = document.getElementById('heroDecay');
-    heroDecayEl.textContent = decay;
-    heroDecayEl.className = 'hero-mini-value ' + (decay.toLowerCase() === 'yes' ? 'decay-yes' : 'decay-no');
-
-    document.getElementById('detailSymbol').textContent = sym;
-    document.getElementById('detailName').textContent = name;
-    document.getElementById('detailYield').textContent = yieldStr;
-    document.getElementById('detailAUM').textContent = aum;
-    const detailDecayEl = document.getElementById('detailDecay');
-    detailDecayEl.textContent = decay;
-    detailDecayEl.className = 'value ' + (decay.toLowerCase() === 'yes' ? 'decay-yes' : decay.toLowerCase() === 'no' ? 'decay-no' : '');
-
-    // ══════════════ YIELD VS FIELD ══════════════
-    const allYields = allRows.map(r => r.yieldNum).filter(v => !isNaN(v));
-    const avgYield = allYields.length ? (allYields.reduce((a,b)=>a+b,0) / allYields.length) : 0;
-    const sortedDesc = [...allYields].sort((a,b) => b - a);
-    const rankPos = sortedDesc.findIndex(v => v === yieldNum) + 1;
-
-    const maxScale = Math.max(yieldNum, avgYield, 1) * 1.15;
-    const thisPct = Math.min((yieldNum / maxScale) * 100, 100);
-    const avgPct = Math.min((avgYield / maxScale) * 100, 100);
-    document.getElementById('compareThisBar').style.width = thisPct + '%';
-    document.getElementById('compareThisText').textContent = yieldStr;
-    document.getElementById('compareAvgBar').style.width = avgPct + '%';
-    document.getElementById('compareAvgText').textContent = avgYield.toFixed(1) + '%';
-    document.getElementById('compareThisLabel').textContent = yieldStr;
-    document.getElementById('compareAvgLabel').textContent = avgYield.toFixed(1) + '%';
-
-    const diff = yieldNum - avgYield;
-    let noteHtml = sym + ' ranks <b>#' + rankPos + ' of ' + allYields.length + '</b> by yield, ';
-    noteHtml += diff >= 0
-      ? 'yielding <b>' + diff.toFixed(1) + ' points above</b> the group average.'
-      : 'yielding <b>' + Math.abs(diff).toFixed(1) + ' points below</b> the group average.';
-    document.getElementById('compareNote').innerHTML = noteHtml;
-
-    // ══════════════ NEXT / PREV (sorted by yield) ══════════════
-    const sortedByYield = [...allRows].sort((a,b) => b.yieldNum - a.yieldNum || a.symbol.localeCompare(b.symbol));
-    const curIdx = sortedByYield.findIndex(r => r.symbol.toUpperCase() === sym.toUpperCase());
-    if (curIdx !== -1 && sortedByYield.length > 1) {
-      const prevRow = sortedByYield[(curIdx - 1 + sortedByYield.length) % sortedByYield.length];
-      const nextRow = sortedByYield[(curIdx + 1) % sortedByYield.length];
-      document.getElementById('navEtfRow').innerHTML = `
-        <a class="nav-etf-btn" href="etf.html?symbol=${encodeURIComponent(prevRow.symbol)}">
-          <span class="nav-etf-dir">← Previous</span>
-          <span class="nav-etf-sym">${prevRow.symbol}</span>
-        </a>
-        <a class="nav-etf-btn" href="etf.html?symbol=${encodeURIComponent(nextRow.symbol)}">
-          <span class="nav-etf-dir">Next →</span>
-          <span class="nav-etf-sym">${nextRow.symbol}</span>
-        </a>`;
-    }
-
-    // ══════════════ SIMILAR ETFS (closest yield) ══════════════
-    const similar = allRows
-      .filter(r => r.symbol.toUpperCase() !== sym.toUpperCase())
-      .map(r => ({ ...r, score: Math.abs(r.yieldNum - yieldNum) }))
-      .sort((a,b) => a.score - b.score)
-      .slice(0, 3);
-
-    document.getElementById('similarGrid').innerHTML = similar.map(r => `
-      <a class="similar-card" href="etf.html?symbol=${encodeURIComponent(r.symbol)}">
-        <div class="sim-symbol">${r.symbol}</div>
-        <div class="sim-name">${r.name}</div>
-        <div class="sim-yield">${r.yieldStr}</div>
-      </a>`).join('');
-
-    document.getElementById('pageTitle').textContent = name + ' (' + sym + ') — ETF Scorecard | MonthlyETFs.com';
-    document.getElementById('pageDescription').setAttribute('content', name + ' (' + sym + ') scorecard: dividend yield ' + yieldStr + ', AUM ' + aum + '. Updated daily.');
-
-    loadingEl.style.display = 'none';
-    cardEl.style.display = 'block';
-
-    trackScorecardPageview(sym, name);
-
+    const [proText, retAll, div] = await Promise.all([proP, retP, divP]);
+    const pro = {};
+    if (proText) { const pr = parseCSV(proText); for (let i = 1; i < pr.length; i++) if (pr[i][0]) pro[pr[i][0].toUpperCase()] = pr[i]; }
+    // PRO row: Symbol, Name, Fund Provider, Dividend Yield, Tax Grade, Expense Ratio, AUM, Total Return, Price Decay, Inception, Frequency, Rating
+    allRows.forEach(r => { const p = pro[r.symbol.toUpperCase()]; if (p) { r.provider = p[2]; r.er = p[5]; r.ret = p[7]; } });
+    const P = pro[match.symbol.toUpperCase()] || null;
+    const R = retAll && retAll.funds ? retAll.funds[match.symbol] : null;
+    render(match, allRows, P, R, div);
+    loadingEl.style.display = 'none'; cardEl.style.display = 'block';
+    trackScorecardPageview(match.symbol, match.name);
+    afterShow(match, P, R, div);
   } catch (err) {
-    console.error(err);
-    loadingEl.style.display = 'none';
-    errorEl.style.display = 'block';
+    console.error(err); loadingEl.style.display = 'none'; errorEl.style.display = 'block';
   }
+}
+
+let CTX = {};
+function render(m, allRows, P, R, div) {
+  const S = m.symbol, name = m.name, prov = P && P[2] ? P[2] : '', er = P && P[5] ? P[5] : '', trS = P && P[7] ? P[7] : '';
+  const tr = num(trS), decay = (m.decay || '').toUpperCase(), aum = aumFmt(m.aum) || aumFmt(P && P[6]);
+  let launch = null; if (P && P[9]) { const k = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/.exec(P[9]); if (k) launch = k[3] + '-' + ('0' + k[1]).slice(-2) + '-' + ('0' + k[2]).slice(-2); }
+  if (!launch && div && div.launchDate) launch = div.launchDate;
+
+  // price: newest of the PRO returns feed and the dividend feed
+  let px = null, chg = null, pxDate = null;
+  if (R && R.px) { px = R.px; chg = R.chg; pxDate = R.pxDate; }
+  if (div && div.px && (!pxDate || (div.pxDate && div.pxDate > pxDate))) { px = div.px; chg = div.chg; pxDate = div.pxDate; }
+
+  // dividends, oldest first
+  const divs = div && div.rows ? div.rows.slice().sort((a, b) => a[0] < b[0] ? -1 : 1) : [];
+  const n = divs.length, latest = n ? divs[n - 1] : null;
+  const last12 = divs.slice(-12), prev12 = divs.slice(-24, -12);
+  const t12 = last12.reduce((a, d) => a + d[1], 0), tp12 = prev12.reduce((a, d) => a + d[1], 0);
+  const avg12 = last12.length ? t12 / last12.length : 0;
+  CTX = { S, px, latest, divs };
+
+  // ---- hero
+  $('heroTicker').textContent = S; $('heroName').textContent = name;
+  $('heroYield').textContent = m.yieldStr.indexOf('%') > -1 ? m.yieldStr : m.yieldStr + '%';
+  $('heroPills').innerHTML = (prov ? '<span class="pill">' + esc(prov) + '</span>' : '') + '<span class="pill gold">&#128467;&#65039; Pays Monthly</span>' + (launch ? '<span class="pill">Since ' + fmon(launch) + '</span>' : '');
+  if (px) {
+    $('pxVal').textContent = '$' + px.toFixed(2);
+    if (typeof chg === 'number') { const c = $('pxChg'); c.className = 'chg ' + (chg < 0 ? 'neg' : 'pos'); c.textContent = (chg < 0 ? '▼ ' : '▲ ') + Math.abs(chg).toFixed(1) + '%'; }
+    $('pxAsof').innerHTML = 'Closing price' + (pxDate ? ' &bull; ' + fmtd(pxDate) : '');
+    show('priceWrap');
+  }
+  if (latest) { $('heroYieldSub').textContent = 'Latest payout $' + latest[1].toFixed(3) + '/share × 12 = $' + (latest[1] * 12).toFixed(2) + ' a year'; show('heroYieldSub'); }
+  const hs = [];
+  if (trS) hs.push(['Total Return', (tr > 0 ? '+' : '') + trS.replace(/^\+/, ''), tr >= 0 ? 'pos' : 'decay-yes']);
+  if (decay && decay !== '—') hs.push(['Price Decay', decay, decay === 'NO' ? 'decay-no' : 'decay-yes']);
+  if (aum) hs.push(['Fund Size', aum, '']);
+  if (er) hs.push(['Expense Ratio', er, '']);
+  $('heroStats').innerHTML = hs.map(h => '<div class="hero-mini-stat"><div class="hero-mini-label">' + h[0] + '</div><div class="hero-mini-value ' + h[2] + '">' + esc(h[1]) + '</div></div>').join('');
+
+  // ---- yield rank in the field
+  const ylds = allRows.map(r => r.yieldNum).sort((a, b) => b - a);
+  const rank = ylds.indexOf(m.yieldNum) + 1, avgf = ylds.reduce((a, b) => a + b, 0) / ylds.length, medf = median(ylds);
+  const beat = Math.round(ylds.filter(v => v < m.yieldNum).length / ylds.length * 100);
+
+  // ---- quick stats
+  const st = [];
+  if (R && typeof R.r1y === 'number') st.push(['1-Year Return', (R.r1y > 0 ? '+' : '') + R.r1y + '%', 'dividends reinvested', R.r1y >= 0 ? 'pos' : 'neg']);
+  if (R && typeof R.r3y === 'number') st.push(['3-Year Return', (R.r3y > 0 ? '+' : '') + R.r3y + '%', 'per year', R.r3y >= 0 ? 'pos' : 'neg']);
+  st.push(['$10K Growth', '', '', '', 'grow10k']);
+  if (R && typeof R.mdd === 'number') st.push(['Worst Drop', R.mdd + '%', 'from a high, last 5 years', 'neg']);
+  if (n >= 2) st.push(['12-Month Payouts', '$' + t12.toFixed(2), 'per share', '']);
+  if (latest) st.push(['Last Payout', '$' + latest[1].toFixed(3), 'ex-date ' + fmtd(latest[0]), '']);
+  if (prev12.length >= 10 && tp12 > 0) { const yoy = (t12 / tp12 - 1) * 100; st.push(['Payout Change', (yoy >= 0 ? '+' : '') + yoy.toFixed(1) + '%', 'last 12 mo vs prior 12', yoy >= 0 ? 'pos' : 'neg']); }
+  if (rank) st.push(['Yield Rank', '#' + rank + ' of ' + ylds.length, 'MonthlyETFs tracked', '']);
+  if (st.length > 8) st.splice(st.findIndex(x => x[0] === 'Yield Rank'), 1);
+  // keep the grid full (rows of 4)
+  if (st.length % 4 && n >= 2) st.push(['Payouts on Record', String(n), 'monthly payouts', '']);
+  if (st.length % 4 && n >= 2) st.push(['Avg Monthly Payout', '$' + avg12.toFixed(3), 'last 12 months', '']);
+  $('statGrid').innerHTML = st.map(s => '<div class="stat"' + (s[4] ? ' id="' + s[4] + '" style="display:none"' : '') + '><em>' + s[0] + '</em><b class="' + s[3] + '">' + s[1] + '</b><small>' + s[2] + '</small></div>').join('');
+  if (st.length >= 4) show('statGrid');
+
+  // ---- payout calendar, table, stats need dividend data
+  if (n >= 2) {
+    $('divTitle').innerHTML = '&#128197; $' + esc(S) + ' Dividend History';
+    $('calSub').textContent = 'What $' + S + ' paid each of the last ' + last12.length + ' months.';
+    $('calGrid').innerHTML = last12.map(d => '<div class="cal-m"><em>' + fmon(d[0]) + '</em><b>$' + d[1].toFixed(3) + '</b><small>ex ' + MON[pd(d[0]).getMonth()] + ' ' + pd(d[0]).getDate() + '</small></div>').join('');
+    const days = last12.map(d => pd(d[0]).getDate()).sort((a, b) => a - b);
+    const dlo = days[Math.min(2, days.length - 1)], dhi = days[Math.max(days.length - 3, 0)];
+    $('calNote').innerHTML = '&#9200; $' + esc(S) + ' usually goes ex-dividend ' + (dlo === dhi ? 'around the <b>' + ord(dlo) + '</b>' : 'between the <b>' + ord(dlo) + ' and ' + ord(dhi) + '</b>') + ' of each month. You need to own shares <b>before</b> the ex-date to get that month\'s payout.';
+    CTX.dlo = dlo; CTX.dhi = dhi;
+    show('calPanel');
+
+    const ups = [], downs = [];
+    for (let i = Math.max(1, n - 12); i < n; i++) { if (divs[i][1] > divs[i - 1][1] * 1.005) ups.push(1); else if (divs[i][1] < divs[i - 1][1] * 0.995) downs.push(1); }
+    const vals12 = last12.map(d => d[1]);
+    $('divMini').innerHTML =
+      '<div><em>Average payout</em><b>$' + avg12.toFixed(3) + '</b><small>last 12 months</small></div>' +
+      '<div><em>Highest payout</em><b>$' + Math.max.apply(null, vals12).toFixed(3) + '</b><small>last 12 months</small></div>' +
+      '<div><em>Lowest payout</em><b>$' + Math.min.apply(null, vals12).toFixed(3) + '</b><small>last 12 months</small></div>' +
+      '<div><em>Raises vs cuts</em><b>' + ups.length + ' up / ' + downs.length + ' down</b><small>month to month, last 12</small></div>';
+
+    // payout table, newest first
+    let html = '';
+    for (let i = n - 1, k = 0; i >= 0; i--, k++) {
+      const a = divs[i][1], p = i ? divs[i - 1][1] : null; let ch = '<span class="flat">-</span>';
+      if (p) { const c = (a / p - 1) * 100; ch = '<span class="' + (c > 0.5 ? 'up' : c < -0.5 ? 'down' : 'flat') + '">' + (c > 0.5 ? '▲' : c < -0.5 ? '▼' : '•') + ' ' + Math.abs(c).toFixed(1) + '%</span>'; }
+      html += '<tr class="' + (k >= 12 ? 'more' : '') + '"><td>' + fmtd(divs[i][0]) + '</td><td class="amt">$' + a.toFixed(4) + '</td><td>$' + (a * 12).toFixed(2) + '</td><td>' + (px ? (a * 12 / px * 100).toFixed(1) + '%' : '-') + '</td><td>' + ch + '</td></tr>';
+    }
+    $('ptbody').innerHTML = html;
+    const tb = $('tbtn'), allTxt = 'Show all ' + n + ' payouts';
+    if (n <= 12) tb.style.display = 'none';
+    tb.textContent = allTxt;
+    tb.addEventListener('click', () => { const t = $('ptable'); t.classList.toggle('open'); tb.textContent = t.classList.contains('open') ? 'Show fewer' : allTxt; });
+    show('payPanel');
+  }
+
+  // ---- income calculator
+  if (px && latest) {
+    $('calcTitle').innerHTML = '&#128176; What Would $' + esc(S) + ' Pay You Every Month?';
+    const r = $('amt'), D = latest[1];
+    const u = () => { const a = +r.value, sh = a / px, mo = sh * D; $('amtOut').textContent = money(a); $('shares').textContent = 'About ' + sh.toFixed(1) + ' shares at $' + px.toFixed(2); $('pm').textContent = money2(mo); $('py').textContent = money2(mo * 12); $('pdy').textContent = money2(mo * 12 / 365); };
+    r.addEventListener('input', u); u();
+    $('goal').innerHTML = '&#127919; To earn <b>$1,000 a month</b> from $' + esc(S) + ' you would need about <b>' + Math.round(1000 / D).toLocaleString('en-US') + ' shares</b> (about <b>' + money(1000 / D * px) + '</b> at the latest price).';
+    show('calcPanel');
+  }
+
+  // ---- 52-week range
+  if (px && div && div.hi52 && div.lo52 && div.hi52 > div.lo52) {
+    const lo = div.lo52, hi = div.hi52, pos = Math.min(Math.max((px - lo) / (hi - lo) * 100, 0), 100);
+    $('rangeDot').style.left = pos.toFixed(0) + '%';
+    $('rangeLo').textContent = 'Low $' + lo.toFixed(2); $('rangeHi').textContent = 'High $' + hi.toFixed(2); $('rangeNow').textContent = '$' + px.toFixed(2) + ' today';
+    let note = S + ' is <b>' + Math.max(0, (1 - px / hi) * 100).toFixed(1) + '%</b> below its 52-week high and <b>' + ((px / lo - 1) * 100).toFixed(1) + '%</b> above its low.';
+    const mid = (hi + lo) / 2; note += ' It is trading in the <b>' + (px >= lo + (hi - lo) * 2 / 3 ? 'upper' : px <= lo + (hi - lo) / 3 ? 'lower' : 'middle') + '</b> part of its 52-week range.';
+    $('rangeNote').innerHTML = note; show('rangePanel');
+  } else { $('rangeRow').style.gridTemplateColumns = '1fr'; }
+
+  // ---- yield vs the field
+  $('rankBadge').style.setProperty('--pct', beat + '%');
+  $('rankNum').textContent = '#' + rank; $('rankOf').textContent = 'of ' + ylds.length;
+  $('fieldNote').innerHTML = '$' + esc(S) + ' yields <b style="color:var(--primary)">' + esc(m.yieldStr) + '</b>, higher than <b>' + beat + '%</b> of the monthly ETFs we track.<br>Group average: <b>' + avgf.toFixed(1) + '%</b> &bull; Median: <b>' + medf.toFixed(1) + '%</b>';
+
+  // ---- fund details
+  const row = (l, v, cls, extraStyle) => v ? '<div class="detail-row"><span class="label">' + l + '</span><span class="value ' + (cls || '') + '"' + (extraStyle ? ' style="' + extraStyle + '"' : '') + '>' + v + '</span></div>' : '';
+  $('detailsL').innerHTML = row('Ticker', esc(S)) + row('Fund Name', esc(name), '', 'text-align:right;max-width:62%') + row('Fund Provider', esc(prov)) +
+    row('Launch Date', launch ? fmtd(launch) : '') + row('Payout Frequency', 'Monthly') + row('Fund Size (AUM)', aum);
+  $('detailsR').innerHTML = row('Dividend Yield', esc(m.yieldStr)) + row('Expense Ratio', esc(er)) + row('Total Return', trS ? (tr > 0 ? '+' : '') + esc(trS.replace(/^\+/, '')) : '', tr >= 0 ? 'decay-no' : 'decay-yes') +
+    row('Price Decay', esc(decay), decay === 'NO' ? 'decay-no' : decay === 'YES' ? 'decay-yes' : '') + row('Worst Drop From a High', R && typeof R.mdd === 'number' ? R.mdd + '%' : '', 'decay-yes') +
+    '<div class="detail-row"><span class="label">Rating &amp; Tax Grade</span><a class="lock" id="lockLink" href="https://topdividendetfspro.com/?utm_source=monthlyetfs&amp;utm_medium=etf_page_grade&amp;utm_campaign=etf_page" target="_blank" rel="noopener">&#128274; PRO</a></div>';
+  $('proTitle').innerHTML = '&#128274; See $' + esc(S) + '’s rating and tax grade';
+
+  // ---- more from the same issuer, and similar yield elsewhere
+  if (prov) {
+    const same = allRows.filter(r => r.symbol !== S && r.provider === prov).sort((a, b) => b.yieldNum - a.yieldNum).slice(0, 4);
+    if (same.length) { $('sameTitle').textContent = 'More ' + prov + ' Monthly ETFs'; $('sameGrid').innerHTML = same.map(simCard).join(''); show('samePanel'); }
+  }
+  const near = allRows.filter(r => r.symbol !== S && (!prov || r.provider !== prov)).sort((a, b) => Math.abs(a.yieldNum - m.yieldNum) - Math.abs(b.yieldNum - m.yieldNum)).slice(0, 4);
+  $('nearTitle').textContent = prov ? 'Similar Yield From Other Issuers' : 'Monthly ETFs With a Similar Yield';
+  $('nearGrid').innerHTML = near.map(simCard).join('');
+
+  // ---- prev / next (sorted by yield, same as before)
+  const sorted = allRows.slice().sort((a, b) => b.yieldNum - a.yieldNum || a.symbol.localeCompare(b.symbol));
+  const ci = sorted.findIndex(r => r.symbol.toUpperCase() === S.toUpperCase());
+  if (ci > -1 && sorted.length > 1) {
+    const pv = sorted[(ci - 1 + sorted.length) % sorted.length], nx = sorted[(ci + 1) % sorted.length];
+    $('navEtfRow').innerHTML = '<a class="nav-etf-btn" href="etf.html?symbol=' + encodeURIComponent(pv.symbol) + '"><span class="nav-etf-dir">&larr; Previous</span><span class="nav-etf-sym">' + esc(pv.symbol) + '</span></a>' +
+      '<a class="nav-etf-btn" href="etf.html?symbol=' + encodeURIComponent(nx.symbol) + '"><span class="nav-etf-dir">Next &rarr;</span><span class="nav-etf-sym">' + esc(nx.symbol) + '</span></a>';
+  }
+
+  // ---- FAQ built from the fund's own numbers
+  const faq = [];
+  if (latest) faq.push(['How much does $' + S + ' pay per month?', '$' + S + '’s most recent monthly payout was $' + latest[1].toFixed(3) + ' per share (ex-date ' + fmtd(latest[0]) + ').' + (last12.length >= 6 ? ' Over the last ' + last12.length + ' months it paid $' + t12.toFixed(2) + ' per share in total, an average of $' + avg12.toFixed(3) + ' a month.' : '')]);
+  faq.push(['When does $' + S + ' pay dividends?', '$' + S + ' pays every month.' + (CTX.dlo ? ' It usually goes ex-dividend ' + (CTX.dlo === CTX.dhi ? 'around the ' + ord(CTX.dlo) : 'between the ' + ord(CTX.dlo) + ' and ' + ord(CTX.dhi)) + ' of the month.' : '')]);
+  if (decay === 'NO' || decay === 'YES') faq.push(['Does $' + S + ' have price decay?', decay === 'NO' ? 'No. $' + S + '’s share price has held up since it launched.' : 'Yes. $' + S + '’s share price is below where it started.' + ' Price decay only looks at the share price, not the dividends paid.']);
+  if (er) faq.push(['What is $' + S + '’s expense ratio?', er + ' per year, which is about $' + Math.round((num(er) || 0) * 100) + ' a year for every $10,000 invested.']);
+  $('faqTitle').textContent = '$' + S + ' FAQ';
+  $('faqBody').innerHTML = faq.map((f, i) => '<details' + (i ? '' : ' open') + '><summary>' + esc(f[0]) + '</summary><p>' + esc(f[1]) + '</p></details>').join('');
+
+  document.getElementById('pageTitle').textContent = name + ' (' + S + ') — ETF Scorecard | MonthlyETFs.com';
+  document.getElementById('pageDescription').setAttribute('content', name + ' (' + S + ') monthly dividend scorecard: yield ' + m.yieldStr + (latest ? ', last payout $' + latest[1].toFixed(3) : '') + ', dividend history, income calculator and price decay. Updated daily.');
+}
+
+// charts need the page visible so they can size to the screen
+async function afterShow(m, P, R, div) {
+  const S = m.symbol, divs = CTX.divs || [], n = divs.length;
+  if (n >= 2) {
+    show('divPanel');
+    const box = $('divChart'), W = Math.min(Math.max(Math.round(box.clientWidth) || 760, 280), 1000), H = W < 520 ? 200 : 230, L = W < 520 ? 44 : 50, Rr = 12, T = 18, B = 34;
+    const shown = divs.slice(-36), k = shown.length, bw = (W - L - Rr) / k;
+    const vals = shown.map(d => d[1]), avg = vals.slice(-12).reduce((a, b) => a + b, 0) / Math.min(12, k);
+    const step = niceStep(Math.max.apply(null, vals) * 1.1), top = Math.ceil(Math.max.apply(null, vals) * 1.12 / step) * step;
+    const Y = v => T + (top - Math.min(v, top)) / top * (H - T - B), dec = top < 0.1 ? 3 : 2;
+    let g = '';
+    for (let v = 0; v <= top + 1e-9; v += step) g += '<line x1="' + L + '" x2="' + (W - Rr) + '" y1="' + Y(v).toFixed(1) + '" y2="' + Y(v).toFixed(1) + '" stroke="#e7eded"/><text x="' + (L - 6) + '" y="' + (Y(v) + 4).toFixed(1) + '" text-anchor="end" font-size="11" fill="#999">$' + v.toFixed(dec) + '</text>';
+    shown.forEach((d, i) => {
+      g += '<g data-tip="' + fmtd(d[0]) + ': $' + d[1].toFixed(4) + '"><rect x="' + (L + i * bw) + '" y="' + T + '" width="' + bw + '" height="' + (H - T - B) + '" fill="transparent"/>' +
+        '<rect x="' + (L + i * bw + Math.min(1.5, bw * 0.12)).toFixed(1) + '" y="' + Y(d[1]).toFixed(1) + '" width="' + Math.max(bw - Math.min(3, bw * 0.24), 1).toFixed(1) + '" height="' + Math.max(H - B - Y(d[1]), 1).toFixed(1) + '" rx="2" fill="' + (i === k - 1 ? '#c99a1d' : '#30776C') + '"/></g>';
+    });
+    g += '<line x1="' + L + '" x2="' + (W - Rr) + '" y1="' + Y(avg).toFixed(1) + '" y2="' + Y(avg).toFixed(1) + '" stroke="#c99a1d" stroke-dasharray="5 4" stroke-width="1.5" pointer-events="none"/>';
+    const ticks = W < 520 ? [0, Math.floor(k / 2), k - 1] : [0, Math.round(k / 4), Math.round(k / 2), Math.round(3 * k / 4), k - 1];
+    ticks.forEach(i => { const d = pd(shown[i][0]), anc = i === 0 ? 'start' : i === k - 1 ? 'end' : 'middle', x = i === 0 ? L : i === k - 1 ? W - Rr : L + i * bw + bw / 2; g += '<text x="' + x.toFixed(1) + '" y="' + (H - 12) + '" text-anchor="' + anc + '" font-size="11" fill="#999">' + MON[d.getMonth()] + ' ' + String(d.getFullYear()).slice(2) + '</text>'; });
+    box.innerHTML = '<svg viewBox="0 0 ' + W + ' ' + H + '" style="width:100%;height:auto;display:block" role="img" aria-label="' + S + ' monthly dividend per share">' + g + '</svg>';
+    wireTips(box);
+    $('divSub').textContent = (k === n && n < 36 ? 'All ' + n + ' payouts on record.' : 'The last ' + k + ' monthly payouts.') + ' Hover or tap a bar for the exact date and amount.';
+    $('divLegend').innerHTML = '<span><i style="background:#30776C"></i>Monthly payout</span><span><i style="background:#c99a1d"></i>Latest payout</span><span><i style="background:none;border-top:2px dashed #c99a1d;height:0;width:14px"></i>12-month average ($' + avg.toFixed(3) + ')</span>';
+  }
+
+  // growth of $10K and the daily yield / total return snapshots (larger files, loaded after the page shows)
+  const [growth, hist] = await Promise.all([getJSON(PRO_DATA + 'growth.json'), getJSON(PRO_DATA + 'history.json')]);
+  const gs = growth && growth[S];
+  if (gs && gs.length >= 8) {
+    show('growthPanel');
+    lineChart('growthChart', gs, '#30776C', (v, axis) => axis ? '$' + (v / 1000).toFixed(1) + 'K' : money(v));
+    const end = gs[gs.length - 1][1];
+    $('growthSub').innerHTML = '$10,000 invested on ' + fmtd(gs[0][0]) + ', with every dividend reinvested, is worth <b style="color:var(--primary)">' + money(end) + '</b> today.';
+    const tile = $('grow10k'); if (tile) { tile.querySelector('em').textContent = '$10K Since ' + fmon(gs[0][0]); tile.querySelector('b').textContent = money(end); tile.querySelector('b').className = end >= 10000 ? 'pos' : 'neg'; tile.querySelector('small').textContent = 'dividends reinvested'; tile.style.display = ''; }
+  }
+  const h = hist && hist[S] ? hist[S].filter(p => typeof p.yield === 'number' && typeof p.totalReturn === 'number') : [];
+  if (h.length >= 5) {
+    show('trendRow');
+    lineChart('yChart', h.map(p => [p.date, p.yield]), '#c99a1d', (v, axis) => v.toFixed(axis ? 1 : 1) + '%');
+    lineChart('tChart', h.map(p => [p.date, p.totalReturn]), '#2e8b57', v => Math.round(v) + '%');
+    $('yLead').textContent = 'Distribution rate since ' + fmon(h[0].date) + ': ' + h[0].yield + '% → ' + h[h.length - 1].yield + '%';
+    $('tLead').textContent = 'Since-launch total return since ' + fmon(h[0].date) + ': ' + h[0].totalReturn + '% → ' + h[h.length - 1].totalReturn + '%';
+  }
+
+  ['proBtn', 'lockLink'].forEach(id => { const el = $(id); if (el) el.addEventListener('click', () => gtag('event', 'pro_click', { from: 'etf_page', symbol: S, spot: id })); });
 }
 
 loadScorecard();
