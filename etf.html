@@ -241,6 +241,15 @@
     .chart-tip{position:absolute;pointer-events:none;background:#1f5148;color:#fff;font-size:.72em;font-weight:700;padding:6px 10px;border-radius:6px;white-space:nowrap;transform:translate(-50%,-110%);display:none;z-index:5}
     .pay-table tr.more{display:none}.pay-table.open tr.more{display:table-row}
     .hero-mini-value.decay-yes{color:#ff9f8f}
+    a.stat.linked{display:block;text-decoration:none;color:inherit;transition:all .15s;cursor:pointer;position:relative}
+    a.stat.linked:hover{border-color:var(--primary);transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.09)}
+    a.stat.linked::after{content:"\2192";position:absolute;top:6px;right:9px;font-size:.75em;color:#9BBCB6;font-weight:900}
+    .bd-more{display:inline-block;margin-top:14px;font-weight:900;font-size:.85em;color:var(--primary);text-decoration:none;border-bottom:2px solid #ffd76a}
+    .bd-more:hover{color:#1f5148;border-color:var(--primary)}
+    .bd-nav{width:100%;display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 16px;font-size:.8em}
+    .bd-nav b{color:#555;margin-right:2px}
+    .bd-nav a{padding:7px 12px;border-radius:999px;border:1.5px solid var(--primary);color:var(--primary);font-weight:900;text-decoration:none;background:#fff}
+    .bd-nav a:hover{background:var(--primary);color:#fff}
   </style>
 <!--mx:css--><style>
 .mx-ovl{width:92%;max-width:1000px;margin:16px auto;display:flex;flex-direction:column;align-items:center;gap:6px;box-sizing:border-box}
@@ -586,9 +595,44 @@ async function loadScorecard() {
     loadingEl.style.display = 'none'; cardEl.style.display = 'block';
     trackScorecardPageview(match.symbol, match.name);
     afterShow(match, P, R, div);
+    addBreakdownLinks(match.symbol);
   } catch (err) {
     console.error(err); loadingEl.style.display = 'none'; errorEl.style.display = 'block';
   }
+}
+
+// every box links to its own breakdown page (/etf/<sym>/<metric>), built daily by scripts/build-breakdowns.mjs
+function addBreakdownLinks(S) {
+  fetch('/etf/list.json').then(r => r.ok ? r.json() : []).then(list => {
+    if (!Array.isArray(list) || list.indexOf(S) < 0) return;
+    const base = '/etf/' + S.toLowerCase() + '/';
+    const more = (el, m, t) => { if (el && !el.querySelector('.bd-more')) el.insertAdjacentHTML('beforeend', '<a class="bd-more" href="' + base + m + '">' + t + ' &rarr;</a>'); };
+    more($('divPanel'), 'dividend-history', 'See the full $' + S + ' dividend history');
+    more($('calPanel'), 'dividend-calendar', 'See the full $' + S + ' dividend calendar');
+    more($('calcPanel'), 'income-calculator', 'Open the $' + S + ' income calculator');
+    more($('growthPanel'), 'growth-of-10k', 'See the full growth of $10,000 breakdown');
+    more($('rangePanel'), '52-week-range', 'See the full 52-week range breakdown');
+    more($('fieldPanel'), 'yield-rank', 'See every monthly ETF ranked by yield');
+    more($('payPanel'), 'dividend-history', 'See every $' + S + ' payout');
+    const tr = $('trendRow');
+    if (tr) { const ps = tr.querySelectorAll('.panel'); more(ps[0], 'yield-trend', 'See the full yield trend'); more(ps[1], 'total-return-trend', 'See the full total return trend'); }
+    const map = [['1-Year Return', 'total-return-trend'], ['3-Year Return', 'total-return-trend'], ['$10K', 'growth-of-10k'], ['Worst Drop', 'total-return-trend'], ['12-Month Payouts', 'dividend-history'], ['Last Payout', 'dividend-calendar'], ['Payout Change', 'dividend-history'], ['Yield Rank', 'yield-rank'], ['Payouts on Record', 'dividend-history'], ['Avg Monthly Payout', 'income-calculator'], ['Decay', 'price-decay'], ['Price', '52-week-range'], ['Yield', 'yield-trend']];
+    document.querySelectorAll('#statGrid .stat').forEach(t => {
+      const em = t.querySelector('em'); if (!em) return;
+      const lab = em.textContent.trim(), hit = map.find(k => lab.indexOf(k[0]) > -1);
+      if (!hit) return;
+      const a = document.createElement('a');
+      for (const at of Array.from(t.attributes)) a.setAttribute(at.name, at.value);
+      a.classList.add('linked'); a.href = base + hit[1]; a.title = 'See the full breakdown';
+      while (t.firstChild) a.appendChild(t.firstChild);
+      t.replaceWith(a);
+    });
+    const grid = $('statGrid');
+    if (grid && !$('bdNav')) {
+      const items = [['yield-trend', '&#128200; Yield Trend'], ['dividend-history', '&#128197; Dividend History'], ['dividend-calendar', '&#128198; Dividend Calendar'], ['income-calculator', '&#128176; Income Calculator'], ['growth-of-10k', '&#127793; Growth of $10K'], ['total-return-trend', '&#128202; Total Return'], ['52-week-range', '&#128207; 52-Week Range'], ['yield-rank', '&#127942; Yield Rank'], ['price-decay', '&#9888;&#65039; Price Decay']];
+      grid.insertAdjacentHTML('afterend', '<div class="bd-nav" id="bdNav"><b>Explore $' + esc(S) + ':</b>' + items.map(i => '<a href="' + base + i[0] + '">' + i[1] + '</a>').join('') + '</div>');
+    }
+  }).catch(() => {});
 }
 
 let CTX = {};
