@@ -240,7 +240,7 @@ function lineChart(o) {
   let mn = Math.min(...all), mx = Math.max(...all);
   if (o.zero) mn = Math.min(mn, 0);
   const pad = (mx - mn) * 0.06 || Math.abs(mx) * 0.05 || 1;
-  const { lo, hi, ticks } = nice(mn - pad, mx + pad, 5);
+  const { lo, hi, ticks } = nice(mn >= 0 ? Math.max(0, mn - pad) : mn - pad, mx + pad, 5);
   const X = i => n < 2 ? L : L + i * (W - L - R) / (n - 1);
   const Y = v => T + (hi - v) / (hi - lo) * (H - T - B);
   let g = '';
