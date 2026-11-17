@@ -246,6 +246,9 @@
     a.stat.linked::after{content:"\2192";position:absolute;top:6px;right:9px;font-size:.75em;color:#9BBCB6;font-weight:900}
     .bd-more{display:inline-block;margin-top:14px;font-weight:900;font-size:.85em;color:var(--primary);text-decoration:none;border-bottom:2px solid #ffd76a}
     .bd-more:hover{color:#1f5148;border-color:var(--primary)}
+    .bd-click{cursor:pointer;transition:transform .15s,box-shadow .15s,border-color .15s}
+    .bd-click:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.11);border-color:var(--primary)}
+    .bd-click input,.bd-click label{cursor:auto}
     .bd-nav{width:100%;display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 16px;font-size:.8em}
     .bd-nav b{color:#555;margin-right:2px}
     .bd-nav a{padding:7px 12px;border-radius:999px;border:1.5px solid var(--primary);color:var(--primary);font-weight:900;text-decoration:none;background:#fff}
@@ -606,7 +609,19 @@ function addBreakdownLinks(S) {
   fetch('/etf/list.json').then(r => r.ok ? r.json() : []).then(list => {
     if (!Array.isArray(list) || list.indexOf(S) < 0) return;
     const base = '/etf/' + S.toLowerCase() + '/';
-    const more = (el, m, t) => { if (el && !el.querySelector('.bd-more')) el.insertAdjacentHTML('beforeend', '<a class="bd-more" href="' + base + m + '">' + t + ' &rarr;</a>'); };
+    // the whole box opens its breakdown (controls inside it, like the calculator slider, keep working)
+    const more = (el, m, t) => {
+      if (!el || el.querySelector('.bd-more')) return;
+      const u = base + m;
+      el.insertAdjacentHTML('beforeend', '<a class="bd-more" href="' + u + '">' + t + ' &rarr;</a>');
+      el.classList.add('bd-click'); el.title = t;
+      el.addEventListener('click', e => {
+        if (e.target.closest('a,button,input,select,textarea,label,summary')) return;
+        if (e.pointerType === 'touch' && e.target.closest('.chart-box')) return;
+        if (String(window.getSelection ? window.getSelection() : '').length) return;
+        if (e.metaKey || e.ctrlKey) window.open(u, '_blank'); else location.href = u;
+      });
+    };
     more($('divPanel'), 'dividend-history', 'See the full $' + S + ' dividend history');
     more($('calPanel'), 'dividend-calendar', 'See the full $' + S + ' dividend calendar');
     more($('calcPanel'), 'income-calculator', 'Open the $' + S + ' income calculator');
