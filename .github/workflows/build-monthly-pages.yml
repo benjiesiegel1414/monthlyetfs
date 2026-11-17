@@ -8,6 +8,7 @@ on:
     paths:
       - 'scripts/build-etf-images.mjs'
       - 'scripts/build-monthly-pages.js'
+      - 'scripts/site-chrome.mjs'
       - '.github/workflows/build-monthly-pages.yml'
   workflow_dispatch:
     inputs:
@@ -46,11 +47,15 @@ jobs:
           MAX_PAGES: ${{ github.event.inputs.max_pages || '25' }}
         run: node scripts/build-monthly-pages.js
 
+      # OVL sponsor banners (top and bottom) and the network footer on every page
+      - name: Apply site banners and footer
+        run: node scripts/site-chrome.mjs
+
       - name: Commit changes
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -A "*-monthly-dividend.html" all-monthly-dividend-etfs.html sitemap.xml etf-images
+          git add -A "*.html" sitemap.xml etf-images
           if git diff --staged --quiet; then
             echo "No data changes — nothing to commit."
           else
