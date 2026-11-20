@@ -526,6 +526,37 @@ body{background:var(--bg)!important;color:var(--txt);font-family:'Inter',system-
 @media(max-width:960px){#postGrid{grid-template-columns:repeat(2,1fr)}.feat{grid-template-columns:1fr}.tg{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:640px){.wrap{width:auto;margin:0 16px}#postGrid{grid-template-columns:1fr}.tg{grid-template-columns:1fr}.search{flex:1 1 100%}.bhead{padding-top:18px}.cats{flex-wrap:nowrap;overflow-x:auto;padding-bottom:2px}.cats button{white-space:nowrap}.lead{min-height:0}.side .mini:nth-child(n+3){display:none}}
 </style>
+<!--mx:css--><style>
+.mx-ovl{width:92%;max-width:1000px;margin:16px auto;display:flex;flex-direction:column;align-items:center;gap:6px;box-sizing:border-box}
+.mx-ovl a img{display:block;max-width:100%;height:auto;transition:transform .3s ease}
+.mx-ovl a:hover img{transform:scale(1.02)}
+.mx-ovl small{color:#666;font-size:.72rem;text-align:center;max-width:100%;overflow-wrap:anywhere;font-family:'Lato',Arial,sans-serif;line-height:1.4}
+.mx-ovl .mx-ovl-lab{font-weight:700}
+.mx-ovl .mx-ovl-pro a{color:#666;text-decoration:underline;font-weight:400}
+.mx-foot{width:94%;max-width:1100px;margin:28px auto 22px;background:linear-gradient(150deg,#1f5148 0%,#30776C 70%,#3a8a7d 100%);color:#fff;border-radius:16px;box-shadow:0 10px 30px rgba(31,81,72,.28);font-family:'Lato',Arial,sans-serif;text-align:left;box-sizing:border-box;overflow:hidden;position:relative;font-size:16px;line-height:1.5}
+.mx-foot::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 90% -20%,rgba(255,215,106,.16),transparent 45%);pointer-events:none}
+.mx-foot *{box-sizing:border-box}
+.mx-foot-in{position:relative;display:grid;grid-template-columns:1.15fr 1fr 1.75fr .95fr;gap:26px;padding:30px 30px 22px}
+.mx-foot h4{margin:0 0 12px;font-size:.72rem;letter-spacing:1.4px;text-transform:uppercase;color:#ffd76a;font-weight:900}
+.mx-foot a{color:rgba(255,255,255,.88);text-decoration:none;font-weight:700}
+.mx-foot a:hover{color:#ffd76a;text-decoration:underline}
+.mx-foot ul{list-style:none;margin:0;padding:0}
+.mx-foot li{margin:0 0 8px;font-size:.86rem}
+.mx-foot .mx-logo{display:inline-block;font-size:1.12rem;font-weight:900;color:#fff;margin-bottom:8px;white-space:nowrap}
+.mx-foot .mx-logo:hover{text-decoration:none;color:#fff}
+.mx-foot p.mx-tag{margin:0 0 14px;font-size:.85rem;color:rgba(255,255,255,.75)}
+.mx-foot .mx-btns{display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+.mx-foot .mx-btn{display:inline-block;padding:8px 14px;border-radius:8px;font-size:.8rem;font-weight:900}
+.mx-foot .mx-btn.gold{background:#ffd76a;color:#1f5148}
+.mx-foot .mx-btn.ghost{border:1px solid rgba(255,255,255,.45);color:#fff}
+.mx-foot .mx-btn:hover{text-decoration:none;transform:translateY(-1px)}
+.mx-foot .mx-net{display:grid;grid-template-columns:1fr 1fr;column-gap:14px}
+.mx-foot .mx-net .here{color:#ffd76a}
+.mx-foot .mx-net a{white-space:nowrap;font-size:.82rem}
+.mx-foot .mx-bottom{position:relative;border-top:1px solid rgba(255,255,255,.18);padding:14px 30px 18px;font-size:.74rem;color:rgba(255,255,255,.65);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+@media(max-width:900px){.mx-foot-in{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.mx-foot-in{grid-template-columns:1fr;padding:24px 20px 16px;gap:22px}.mx-foot .mx-bottom{padding:14px 20px 18px}}
+</style><!--/mx:css-->
 </head>
 <body>
 <div class="content">
